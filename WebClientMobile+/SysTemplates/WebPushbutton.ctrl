@@ -1,0 +1,17 @@
+/(!JSInit:once)
+/(!JSInit)
+
+{
+	xtype: "button",
+	iconMask: true,
+	iconCls: "/(!Param:iconCls)",
+	ui: "/(!Param:ui)" || "plain",
+	handler: function(b, e) {
+		/(!If:/(!Event:phys=Pressed))
+			panel.submit(wcli.evt("Pressed", "/(!NameID)"));
+		/(!If)
+	},
+	/(!If:/(!Property:Text)=)/(!Else)
+		text: "/(!Property:Text)"
+	/(!If)
+},
