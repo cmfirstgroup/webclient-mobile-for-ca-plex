@@ -1,0 +1,35 @@
+/(!JSInit)
+	wcli.regModel("/(!NameID)", wcli.unesc("/(!This:!jsonCols)"));
+	window["/(!NameID)_store"] = new Ext.data.JsonStore(
+		wcli.gridStore("/(!NameID)",
+			wcli.unesc("/(!This:!jsonCols)"),
+			wcli.unesc("/(!This:!jsonRows)"))
+	);
+/(!JSInit)
+
+/(!MainArea)
+{
+	xtype: "hidden",
+	name: "/(!NameID)"
+},
+/(!MainArea)
+
+{
+	xtype: "list",
+	name: "/(!NameID)",
+	itemTpl: wcli.gridTpl(wcli.unesc("/(!This:!jsonCols)"), [
+		/(!AttachPoint:name=ColumnsArea:inlinetemplate:sep=,)
+			"/(!Text:htmlbr)"
+		/(!AttachPoint)
+	]),
+	store: window["/(!NameID)_store"],
+	listeners: {
+		itemtap: {
+			fn: function(view, index) {
+				panel.setValues({ "/(!NameID)": index });
+				panel.submit(wcli.evt("Select", "/(!NameID)"));
+			},
+			scope: this
+		}
+	}
+},

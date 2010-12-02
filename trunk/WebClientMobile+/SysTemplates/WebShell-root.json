@@ -1,0 +1,25 @@
+/(OutTo:json.success)"true"/(OutTo)
+
+/(OutTo:json.values:comments=js)
+	{
+		/(!AttachPoint:name=ValuesArea)
+		/(!-- fix syntax errors)
+		"__fence__": "__post__"
+	}
+/(OutTo)
+
+/(OutTo:json.states:comments=js)
+	{
+		/(!AttachPoint:name=StatesArea)
+		/(!-- fix syntax errors)
+		"__fence__": "__post__"
+	}
+/(OutTo)
+
+/(OutTo:json.focus)
+	[
+		/(!AttachPoint:name=FocusArea)
+		/(!-- fix syntax errors)
+		"__fencepost__"
+	]
+/(OutTo)
