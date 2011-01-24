@@ -1,15 +1,15 @@
 /(!JSInit)
-	wcli.regModel("/(!NameID)", wcli.unesc("/(!This:!jsonCols)"));
-	window["/(!NameID)_store"] = new Ext.data.JsonStore(
-		wcli.gridStore("/(!NameID)",
-			wcli.unesc("/(!This:!jsonCols)"),
-			wcli.unesc("/(!This:!jsonRows)"))
-	);
+	/(!WebGrid-model.inc)
 /(!JSInit)
+
+/(!JS)
+	/(!WebGrid-model.inc)
+/(!JS)
 
 /(!MainArea)
 {
-	xtype: "hidden",
+	xtype: "textfield",
+	hidden: true,
 	name: "/(!NameID)"
 },
 /(!MainArea)

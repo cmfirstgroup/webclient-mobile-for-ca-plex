@@ -1,3 +1,4 @@
+/(!If:/(!Req:_panelConfig))/(!Else)
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,7 +18,8 @@
 				glossOnIcon: true,
 				standardSubmit: false,
 				onReady: function() {
-					window.panel = new Ext.form.FormPanel({
+					var panelConfig = /(!If)({
+						xtype: 'formpanel',
 						url: '/(WSACTION)',
 						scroll: 'vertical',
 						fullscreen: 'true',
@@ -43,6 +45,15 @@
 							scroll: 'horizontal',
 							items: [/(!AttachPoint:name=ButtonArea)]
 						}]
+					})
+					/(!If:/(!Req:_panelConfig))/(!Else)
+
+					window.panel = Ext.create(panelConfig);
+					
+					window.controller = new Ext.Panel({
+						fullscreen: true,
+						layout: 'card',
+						items: [panel]
 					});
 					panel.show();
 					/(!AttachPoint:name=JSOnLoad)
@@ -53,3 +64,4 @@
 	<body>
 	</body>
 </html>
+/(!If)

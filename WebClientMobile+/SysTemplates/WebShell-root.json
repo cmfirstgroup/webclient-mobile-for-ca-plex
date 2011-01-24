@@ -23,3 +23,27 @@
 		"__fencepost__"
 	]
 /(OutTo)
+
+/(OutTo:json.alerts)
+	[
+		/(!AttachPoint:name=AlertsArea)
+		/(!-- fix syntax errors)
+		"__fencepost__"
+	]
+/(OutTo)
+
+/(OutTo:json.init)
+	/(Embed:html)
+		function() {
+			/(AttachPoint:name=JS)
+		}
+	/(Embed)
+/(OutTo)
+
+/(!Panel:!Action:Refresh)
+	/(OutTo:json.refresh)
+		/(Embed:html)
+			/(!Render:_type=html:_panelConfig=true)
+		/(Embed)
+	/(OutTo)
+/(!Panel:!Action)

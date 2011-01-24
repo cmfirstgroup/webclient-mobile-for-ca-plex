@@ -1,0 +1,15 @@
+/(!AlertsArea)
+	/(!Panel:!EnableAction:Alert,Enquiry)
+	
+	/(!Panel:!Action:Alert)
+		/(Embed:html)/(!ActionArg)/(Embed),
+	/(!Panel:!Action)
+	
+	/(!Panel:!Action:Enquiry)
+		/(Embed:html)/(!ActionArg)/(Embed),
+	/(!Panel:!Action)
+	
+	/(ALERTS)
+		/(Embed:html)/(AlertMsg)/(Embed),
+	/(ALERTS)
+/(!AlertsArea)
