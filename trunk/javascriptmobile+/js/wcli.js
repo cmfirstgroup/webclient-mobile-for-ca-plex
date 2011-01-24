@@ -17,9 +17,48 @@ Ext.apply(wcli, {
 				focus: id
 			},
 			success: function(form, result) {
-				panel.setValues(result.values);
+				if (result.alerts.length > 1) {
+					var alerts = result.alerts;
+					alerts.pop();
+					(function display() {
+						if (result.alerts.length > 0) {
+							Ext.Msg.alert('Alert', alerts.pop(), display);
+						}
+					})();
+				}
+				else if (result.refresh) {
+					eval(result.init).call(window);
+					var panelConfig = eval(result.refresh);
+					var newPanel = Ext.create(panelConfig);
+					
+					controller.on('cardswitch', function() {
+						panel.destroy();
+						window.panel = newPanel;
+					}, { single: true });
+					controller.setActiveItem(newPanel, 'slide');
+				}
+				else {
+					// No point in setting values after a refresh...
+					panel.setValues(result.values);
+				}
 			}
 		};
+	},
+	
+	// TODO: I added this function because including one template within
+	// another obscures the original set of parameters; it was easier to
+	// extract it from the control name than fixing it in WebClient.  We'll
+	// still want to do that eventually...
+	param: function(cname, key) {
+		var res = '';
+		Ext.each(cname.split(':'), function(ent) {
+			ent = ent.split('=');
+			if (ent[0] == key) {
+				res = ent[1];
+				return false;
+			}
+		});
+		return res;
 	},
 
 	esc: function(str) {
