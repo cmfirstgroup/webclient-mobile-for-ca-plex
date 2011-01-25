@@ -1,16 +1,16 @@
 /(!EnableAction:SetValue,SetState,SetFocus)
 
-/(!Panel:!ValuesArea)
+/(!ValuesArea)
 	/(!Action:SetValue)"/(!NameID)": /(!This),/(!Action)
-/(!Panel:!ValuesArea)
+/(!ValuesArea)
 
-/(!Panel:!StatesArea)
+/(!StatesArea)
 	/(!Action:SetState)"/(!NameID)": "FooBar",/(!Action)
-/(!Panel:!StatesArea)
+/(!StatesArea)
 
-/(!Panel:!FocusArea)
+/(!FocusArea)
 	/(!Action:SetFocus)"/(!NameID)",/(!Action)
-/(!Panel:!FocusArea)
+/(!FocusArea)
 
 {
 	xtype: "/(!Param:xtype)",

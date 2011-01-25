@@ -34,9 +34,9 @@
 
 /(OutTo:json.init)
 	/(Embed:html)
-		function() {
-			/(AttachPoint:name=JS)
-		}
+		(function() {
+			/(!AttachPoint:name=JS)
+		})
 	/(Embed)
 /(OutTo)
 
