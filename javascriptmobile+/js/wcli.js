@@ -39,10 +39,33 @@ Ext.apply(wcli, {
 				}
 				else {
 					// No point in setting values after a refresh...
+					wcli.parseStates(result.states);
 					panel.setValues(result.values);
 				}
 			}
 		};
+	},
+	
+	parseStates: function(states) {
+		states = states || {};
+		for (var key in states) {
+			if (states.hasOwnProperty(key)) {
+				wcli.parseState(panel.getComponent(key), states[key]);
+			}
+		}
+	},
+	
+	parseState: function(control, state) {
+		if (states.optionNames && states.optionValues) {
+			var names = state.optionNames,
+				values = state.optionValues,
+				items = [];
+			
+			for (var i = 0; i < names.length; i++) {
+				items.push({ text: names[i], value: values[i] });
+			}
+			control.setOptions(items, false);
+		}
 	},
 	
 	// TODO: I added this function because including one template within
@@ -120,5 +143,26 @@ Ext.apply(wcli, {
 			store.data.push(item);
 		}
 		return store;
+	},
+	
+	getDate: function(dateStr) {
+		var year, month, day;
+		
+		if (!dateStr) {
+			return null;
+		}
+		else if (dateStr.length == 8) {
+			year = parseInt(dateStr.substring(0, 4));
+			month = parseInt(dateStr.substring(4, 6));
+			day = parseInt(dateStr.substring(6, 8));
+		}
+		else if (/^\d{4}-\d{2}-\d{2}/.test(dateStr)) {
+			var sections = dateStr.split(/[-TZ]/g);
+			year = parseInt(sections[0]);
+			month = parseInt(sections[1]);
+			day = parseInt(sections[2]);
+		}
+		
+		return new Date(year, month - 1, day);
 	}
 });

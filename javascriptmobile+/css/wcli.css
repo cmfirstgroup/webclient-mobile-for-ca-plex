@@ -1,0 +1,41 @@
+.x-form-fieldset .x-button {
+	margin: 0px;
+	background: white none;
+	border-bottom: 1px solid lightgrey;
+	border-radius: 0;
+}
+
+.x-form-fieldset .x-button.x-button-pressed {
+	background: -webkit-gradient(linear, left bottom, left top,
+					color-stop(0%,#2F4763),
+					color-stop(100%,#192533));
+	color: lightgrey;
+}
+
+.x-form-fieldset .x-button:after {
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	top: 0px;
+	right: 0px;
+	margin: 10px;
+	content: "";
+	background-color: #1D71D9;
+	-webkit-mask-image: url("../images/disclosure.png");
+}
+
+.x-form-fieldset .x-button:first-child {
+	border-top-left-radius: 0.4em;
+	border-top-right-radius: 0.4em;
+}
+
+.x-form-fieldset .x-button:last-child {
+	border-bottom-width: 0px;
+	border-bottom-left-radius: 0.4em;
+	border-bottom-right-radius: 0.4em;
+}
+
+.x-form-fieldset .x-button .x-button-label {
+	text-align: left;
+	font-size: 0.75em;
+}
