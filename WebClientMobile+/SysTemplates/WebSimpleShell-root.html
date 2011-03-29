@@ -1,0 +1,67 @@
+/(!If:/(!Req:_panelConfig))/(!Else)
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+
+		<link rel="stylesheet" href="/(!WsRes)/css/sencha-touch.css" type="text/css">
+		<link rel="stylesheet" href="/(!WsRes)/css/wcli.css" type="text/css">
+		<script type="text/javascript" src="/(!WsRes)/js/sencha-touch-debug.js"></script>
+		<script type="text/javascript" src="/(!WsRes)/js/wcli.js"></script>
+		/(!AttachPoint:name=HeadArea)
+		<script type="text/javascript">
+			/(!AttachPoint:name=JSInit)
+			Ext.setup({
+				tabletStartupScreen: '/(!WsRes)/images/tablet_startup.png',
+				phoneStartupScreen: '/(!WsRes)/images/phone_startup.png',
+				icon: '/(!WsRes)/images/icon.png',
+				glossOnIcon: true,
+				standardSubmit: false,
+				onReady: function() {
+					var panelConfig = /(!If)({
+						xtype: 'formpanel',
+						url: '/(WSACTION)',
+						scroll: 'vertical',
+						fullscreen: 'true',
+						defaults: {
+							flex: 1
+						},
+						layout: {
+							type : 'vbox',
+							align: 'stretch'
+						},
+						items: [/(!AttachPoint:name=MainArea)],
+						dockedItems: [{
+							xtype: 'toolbar',
+							dock: 'top',
+							scroll: 'horizontal',
+							items: [
+								/(!AttachPoint:name=ButtonArea)
+								/(!AttachPoint:name=LeftAlignArea)
+								{ xtype: 'spacer' },
+								/(!AttachPoint:name=CenterAlignArea)
+								{ xtype: 'spacer' },
+								/(!AttachPoint:name=RightAlignArea)
+							]
+						}]
+					})
+					/(!If:/(!Req:_panelConfig))/(!Else)
+
+					window.panel = Ext.create(panelConfig);
+					
+					window.controller = new Ext.Panel({
+						fullscreen: true,
+						layout: 'card',
+						items: [panel]
+					});
+					panel.show();
+					/(!AttachPoint:name=JSOnLoad)
+				}
+			});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>
+/(!If)
