@@ -15,7 +15,7 @@
 {
 	xtype: "textfield",
 	name: "/(!NameID)",
-	label: "/(!Param:label)" || "Field",
+	label: "/(!Param:label)" || undefined, //"Field",
 	value: "/(!This)",
 	listeners: {
 		focus: {

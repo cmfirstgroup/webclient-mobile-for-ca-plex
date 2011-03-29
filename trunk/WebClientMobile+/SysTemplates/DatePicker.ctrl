@@ -1,0 +1,49 @@
+/(!EnableAction:SetValue,SetState,SetFocus)
+
+/(!ValuesArea)
+	/(!Action:SetValue)"/(!NameID)": wcli.getDate(/(!This)),/(!Action)
+/(!ValuesArea)
+
+/(!StatesArea)
+	/(!Action:SetState)"/(!NameID)": "",/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+new Ext.form.DatePicker({
+	name: "/(!NameID)",
+	label: "/(!Param:label)" || undefined,
+	value: wcli.getDate("/(!This)"),
+	listeners: {
+		focus: {
+			fn: function(e) {
+				/(!If:/(!Event:phys=Gained Focus))
+				panel.submit(wcli.evt("Gained Focus", "/(!NameID)"));
+				/(!If)
+			},
+			scope: this
+		},
+		blur: {
+			fn: function(e) {
+				/(!If:/(!Event:phys=Lost Focus))
+				panel.submit(wcli.evt("Lost Focus", "/(!NameID)"));
+				/(!If)
+			},
+			scope: this
+		},
+		change: {
+			fn: function(e) {
+				/(!If:/(!Event:phys=Updated))
+				panel.submit(wcli.evt("Updated", "/(!NameID)"));
+				/(!If)
+				/(!If:/(!Event:phys=Modified))
+				panel.submit(wcli.evt("Modified", "/(!NameID)"));
+				/(!If)
+			},
+			scope: this
+		}
+	}
+}),
+

@@ -1,0 +1,65 @@
+/(!EnableAction:SetValue,SetState,SetFocus,Combo.Clear,Combo.Remove,Combo.Add)
+
+/(!ValuesArea)
+	/(!Action:SetValue)"/(!NameID)": /(!This:value),/(!Action)
+/(!ValuesArea)
+
+/(!StatesArea)
+	/(!Action:SetState)
+	"/(!NameID)": {
+		"optionNames": /(!jsonOptions),
+		"optionValues: /(!jsonValues) 
+	},
+	/(!Action)
+	/(!Action:Combo.Clear)
+	"/(!NameID)": {
+		"optionNames": /(!jsonOptions),
+		"optionValues: /(!jsonValues) 
+	},
+	/(!Action)
+	/(!Action:Combo.Remove)
+	"/(!NameID)": {
+		"optionNames": /(!jsonOptions),
+		"optionValues: /(!jsonValues) 
+	},
+	/(!Action)
+	/(!Action:Combo.Add)
+	"/(!NameID)": {
+		"optionNames": /(!jsonOptions),
+		"optionValues: /(!jsonValues) 
+	},
+	/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+{
+	xtype: "selectfield",
+	name: "/(!NameID)",
+	label: wcli.param("/(!Property:ControlName)", "label") || "Field",
+	options: [
+		/(!This)
+		{
+			text: "/(!OptText)",
+			value: "/(!OptValue)"
+		},
+		/(!This)
+	],
+	value: "/(!This:value)",
+	disabled: "/(!Mode)" === "Read Only",
+	listeners: {
+		change: {
+			fn: function(e) {
+				/(!If:/(!Event:phys=Updated))
+				panel.submit(wcli.evt("Updated", "/(!NameID)"));
+				/(!If)
+				/(!If:/(!Event:phys=Modified))
+				panel.submit(wcli.evt("Modified", "/(!NameID)"));
+				/(!If)
+			},
+			scope: this
+		}
+	}
+},

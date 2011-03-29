@@ -6,6 +6,7 @@
 		<title></title>
 
 		<link rel="stylesheet" href="/(!WsRes)/css/sencha-touch.css" type="text/css">
+		<link rel="stylesheet" href="/(!WsRes)/css/wcli.css" type="text/css">
 		<script type="text/javascript" src="/(!WsRes)/js/sencha-touch-debug.js"></script>
 		<script type="text/javascript" src="/(!WsRes)/js/wcli.js"></script>
 		/(!AttachPoint:name=HeadArea)
@@ -43,7 +44,14 @@
 							xtype: 'toolbar',
 							dock: 'top',
 							scroll: 'horizontal',
-							items: [/(!AttachPoint:name=ButtonArea)]
+							items: [
+								/(!AttachPoint:name=ButtonArea)
+								/(!AttachPoint:name=LeftAlignArea)
+								{ xtype: 'spacer' },
+								/(!AttachPoint:name=CenterAlignArea)
+								{ xtype: 'spacer' },
+								/(!AttachPoint:name=RightAlignArea)
+							]
 						}]
 					})
 					/(!If:/(!Req:_panelConfig))/(!Else)
