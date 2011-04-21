@@ -17,8 +17,8 @@
 {
 	xtype: "list",
 	name: "/(!NameID)",
-	grouped: /(!Param:grouped),
-	indexBar: /(!Param:grouped),
+	grouped: "/(!Param:grouped)" === "true",
+	indexBar: "/(!Param:grouped)" === "true",
 	itemTpl: wcli.gridTpl(wcli.unesc("/(!This:!jsonCols)"), [
 		/(!AttachPoint:name=ColumnsArea:inlinetemplate:sep=,)
 			"/(!Text:htmlbr)"
