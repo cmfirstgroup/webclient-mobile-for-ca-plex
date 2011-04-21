@@ -131,8 +131,8 @@ Ext.apply(wcli, {
 		rows = JSON.parse(rows);
 		var store = {
 			model: model,
-			groupField: cols[0],
-			sorters: cols[0],
+			groupField: wcli.esc(cols[0]),
+			sorters: wcli.esc(cols[0]),
 			data: []
 		};
 		while (rows.length > 0) {
