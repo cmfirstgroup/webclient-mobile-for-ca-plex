@@ -13,7 +13,7 @@
 /(!FocusArea)
 
 {
-	xtype: "textfield",
+	xtype: "searchfield",
 	name: "/(!NameID)",
 	label: "/(!Param:label)" || undefined, //"Field",
 	value: "/(!This)",
