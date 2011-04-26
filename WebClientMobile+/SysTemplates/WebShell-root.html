@@ -3,11 +3,9 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>MatchPoint Mobile+</title>
+		<title></title>
 
-	
-		<link rel="SHORTCUT ICON" HREF="http://www.cmfirsttech.com/favicon.ico">
-		<link rel="stylesheet" href="/(!WsRes)/css/apple.css" type="text/css">
+		<link rel="stylesheet" href="/(!WsRes)/css/sencha-touch.css" type="text/css">
 		<link rel="stylesheet" href="/(!WsRes)/css/wcli.css" type="text/css">
 		<script type="text/javascript" src="/(!WsRes)/js/sencha-touch-debug.js"></script>
 		<script type="text/javascript" src="/(!WsRes)/js/wcli.js"></script>
@@ -35,12 +33,13 @@
 						},
 						items: [{
 							xtype: 'carousel',
-							items: [{
+							items: [
+							    /(!AttachPoint:name=GridArea)
+							{
 								xtype: 'fieldset',
 								title: '/(!Panel:!Property:Title)',
 								items: [/(!AttachPoint:name=MainArea)]
-							},
-							/(!AttachPoint:name=GridArea)]
+							}]
 						}],
 						dockedItems: [{
 							xtype: 'toolbar',
