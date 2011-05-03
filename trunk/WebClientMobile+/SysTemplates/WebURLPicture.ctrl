@@ -1,0 +1,18 @@
+/(!EnableAction:SetValue,SetState,SetFocus)
+
+/(!ValuesArea)
+	/(!Action:SetValue)"/(!NameID)": /(!This),/(!Action)
+/(!ValuesArea)
+
+/(!StatesArea)
+	/(!Action:SetState)"/(!NameID)": "",/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+{
+html: '<img src="/(!WsRes)/images//(!This)" alt="/(!Param:label)" />'
+},
+
