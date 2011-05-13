@@ -17,6 +17,7 @@
 	name: "/(!NameID)",
 	label: "/(!Param:label)" || undefined, //"Field",
 	value: "/(!This)",
+	width: 100,
 	placeHolder: "Search",
 	listeners: {
 		focus: {
