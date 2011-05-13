@@ -16,7 +16,6 @@
 	xtype: "textareafield",
 	name: "/(!NameID)",
 	label: "/(!Param:label)" || "Field",
-	value: "/(!This)",
 	listeners: {
 		focus: {
 			fn: function(e) {
