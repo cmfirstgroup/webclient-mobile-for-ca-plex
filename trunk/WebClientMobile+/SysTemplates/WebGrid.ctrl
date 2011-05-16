@@ -17,9 +17,9 @@
 {
 	xtype: "list",
 	name: "/(!NameID)",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	grouped: "/(!Param:grouped)" === "true",
-	indexBar: "/(!Param:grouped)" === "true",
-	itemTpl: wcli.gridTpl(wcli.unesc("/(!This:!jsonCols)"), [
+	itemTpl: wcli.util.gridTpl(wcli.util.htmlDecode("/(!This:!jsonCols)"), [
 		/(!AttachPoint:name=ColumnsArea:inlinetemplate:sep=,)
 			"/(!Text:htmlbr)"
 		/(!AttachPoint)
@@ -28,8 +28,11 @@
 	listeners: {
 		itemtap: {
 			fn: function(view, index) {
+				/(!If:/(!Event:phys=Select))
+				index = view.getStore().getAt(index).get('$$idx$$');
 				panel.setValues({ "/(!NameID)": index });
-				panel.submit(wcli.evt("Select", "/(!NameID)"));
+				panel.submit(wcli.util.evt("Select", "/(!NameID)"));
+				/(!If)
 			},
 			scope: this
 		}
