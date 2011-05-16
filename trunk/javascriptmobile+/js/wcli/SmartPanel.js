@@ -63,7 +63,7 @@ Ext.ns('wcli');
 				bodyMap = {};
 			for (var i = 0; i < body.length; i++) {
 				var item = body[i],
-					name = item.controlName.fieldSet,
+					name = item.controlName.fieldSet || '',
 					fieldSet = _getMappedItem(name, bodyMap, bodyItems, {
 						name: fieldSetName,
 						items: []
@@ -83,8 +83,9 @@ Ext.ns('wcli');
 		// Fullscreen items.  Only display the first one instantiated (can't
 		// have more than one fullscreen control at a time!)
 		else {
+			var hidden = body.filter(function(n) { return n.hidden; });
 			config.bodyMargin = config.bodyPadding = 0;
-			config.items.push(fullscreen[0]);
+			config.items = [fullscreen[0]].concat(hidden);
 		}
 		
 		return config;
