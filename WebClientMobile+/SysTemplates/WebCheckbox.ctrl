@@ -15,13 +15,14 @@
 {
 	xtype: "togglefield",
 	name: "/(!NameID)",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	label: "/(!Property:Text)" || "Field",
 	value: "/(!This)",
 	listeners: {
 		focus: {
 			fn: function(e) {
 				/(!If:/(!Event:phys=Gained Focus))
-				panel.submit(wcli.evt("Gained Focus", "/(!NameID)"));
+				panel.submit(wcli.util.evt("Gained Focus", "/(!NameID)"));
 				/(!If)
 			},
 			scope: this
@@ -29,7 +30,7 @@
 		blur: {
 			fn: function(e) {
 				/(!If:/(!Event:phys=Lost Focus))
-				panel.submit(wcli.evt("Lost Focus", "/(!NameID)"));
+				panel.submit(wcli.util.evt("Lost Focus", "/(!NameID)"));
 				/(!If)
 			},
 			scope: this
@@ -37,10 +38,10 @@
 		change: {
 			fn: function(e) {
 				/(!If:/(!Event:phys=Updated))
-				panel.submit(wcli.evt("Updated", "/(!NameID)"));
+				panel.submit(wcli.util.evt("Updated", "/(!NameID)"));
 				/(!If)
 				/(!If:/(!Event:phys=Modified))
-				panel.submit(wcli.evt("Modified", "/(!NameID)"));
+				panel.submit(wcli.util.evt("Modified", "/(!NameID)"));
 				/(!If)
 			},
 			scope: this

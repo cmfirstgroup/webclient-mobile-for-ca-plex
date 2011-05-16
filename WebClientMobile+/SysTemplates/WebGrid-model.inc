@@ -1,6 +1,6 @@
-wcli.regModel("/(!NameID)", wcli.unesc("/(!This:!jsonCols)"));
-window["/(!NameID)_store"] = new Ext.data.JsonStore(
-	wcli.gridStore("/(!NameID)",
-		wcli.unesc("/(!This:!jsonCols)"),
-		wcli.unesc("/(!This:!jsonRows)"))
+wcli.util.regModel("/(!NameID)", wcli.util.htmlDecode("/(!This:!jsonCols)"));
+window["/(!NameID)_store"] = new Ext.data.Store(
+	wcli.util.gridStore("/(!NameID)",
+		wcli.util.htmlDecode("/(!This:!jsonCols)"),
+		wcli.util.htmlDecode("/(!This:!jsonRows)"))
 );

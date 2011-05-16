@@ -5,12 +5,13 @@
 
 {
 	xtype: "button",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	iconMask: true,
 	iconCls: "/(!Param:iconCls)",
 	ui: "/(!Param:ui)" || "plain",
 	handler: function(b, e) {
 		/(!If:/(!Event:phys=Pressed))
-			panel.submit(wcli.evt("Pressed", "/(!NameID)"));
+			panel.submit(wcli.util.evt("Pressed", "/(!NameID)"));
 		/(!If)
 	},
 	/(!If:/(!Property:Text)=)/(!Else)
