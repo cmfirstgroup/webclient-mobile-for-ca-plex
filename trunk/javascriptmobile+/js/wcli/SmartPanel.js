@@ -65,7 +65,7 @@ Ext.ns('wcli');
 				var item = body[i],
 					name = item.controlName.fieldSet || '',
 					fieldSet = _getMappedItem(name, bodyMap, bodyItems, {
-						name: fieldSetName,
+						name: name,
 						items: []
 					});
 				fieldSet.items.push(item);
