@@ -6,9 +6,10 @@
 }
 
 .x-form-fieldset .x-button.x-button-pressed {
-	background: -webkit-gradient(linear, left bottom, left top,
-					color-stop(0%,#2F4763),
-					color-stop(100%,#192533));
+	background: -webkit-gradient(
+		linear, left top, left bottom,
+		color-stop(0%,#2f4763),
+		color-stop(66%,#223347));
 	color: lightgrey;
 }
 
@@ -38,4 +39,8 @@
 .x-form-fieldset .x-button .x-button-label {
 	text-align: left;
 	font-size: 0.75em;
+}
+
+.wcli-fullscreen-grid {
+	-webkit-box-flex: 1;
 }
