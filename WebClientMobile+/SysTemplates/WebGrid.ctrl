@@ -17,14 +17,16 @@
 {
 	xtype: "list",
 	name: "/(!NameID)",
+	cls: "wcli-fullscreen-grid",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	grouped: "/(!Param:grouped)" === "true",
 	itemTpl: wcli.util.gridTpl(wcli.util.htmlDecode("/(!This:!jsonCols)"), [
 		/(!AttachPoint:name=ColumnsArea:inlinetemplate:sep=,)
 			"/(!Text:htmlbr)"
 		/(!AttachPoint)
-	]),
+	], "/(!Param:grouped)" === "true"),
 	store: window["/(!NameID)_store"],
+	disabled: "/(!Mode)" === "Read Only",
 	listeners: {
 		itemtap: {
 			fn: function(view, index) {

@@ -5,7 +5,9 @@
 /(!ValuesArea)
 
 /(!StatesArea)
-	/(!Action:SetState)"/(!NameID)": "FooBar",/(!Action)
+	/(!Action:SetState)"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If)
+	},/(!Action)
 /(!StatesArea)
 
 /(!FocusArea)
@@ -18,6 +20,7 @@
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	label: "/(!Param:label)" || undefined,
 	value: "/(!This)",
+	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 	listeners: {
 		focus: {
 			fn: function(e) {

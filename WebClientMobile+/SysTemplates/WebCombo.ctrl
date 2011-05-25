@@ -7,24 +7,28 @@
 /(!StatesArea)
 	/(!Action:SetState)
 	"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 		"optionNames": /(!jsonOptions),
 		"optionValues: /(!jsonValues) 
 	},
 	/(!Action)
 	/(!Action:Combo.Clear)
 	"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 		"optionNames": /(!jsonOptions),
 		"optionValues: /(!jsonValues) 
 	},
 	/(!Action)
 	/(!Action:Combo.Remove)
 	"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 		"optionNames": /(!jsonOptions),
 		"optionValues: /(!jsonValues) 
 	},
 	/(!Action)
 	/(!Action:Combo.Add)
 	"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 		"optionNames": /(!jsonOptions),
 		"optionValues: /(!jsonValues) 
 	},
@@ -49,7 +53,7 @@
 		/(!This)
 	],
 	value: "/(!This:value)",
-	disabled: "/(!Mode)" === "Read Only",
+	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 	listeners: {
 		change: {
 			fn: function(e) {

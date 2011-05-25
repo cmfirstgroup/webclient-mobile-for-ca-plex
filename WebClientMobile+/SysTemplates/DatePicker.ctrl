@@ -5,7 +5,9 @@
 /(!ValuesArea)
 
 /(!StatesArea)
-	/(!Action:SetState)"/(!NameID)": "",/(!Action)
+	/(!Action:SetState)"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If)
+	},/(!Action)
 /(!StatesArea)
 
 /(!FocusArea)
@@ -17,6 +19,7 @@ new Ext.form.DatePicker({
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	label: "/(!Param:label)" || undefined,
 	value: wcli.util.getDate("/(!This)"),
+	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 	listeners: {
 		focus: {
 			fn: function(e) {
