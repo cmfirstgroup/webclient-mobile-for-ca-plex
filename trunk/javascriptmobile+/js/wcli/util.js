@@ -32,9 +32,9 @@ wcli.util = (function() {
 							}
 						})();
 					}
-					else if (result.refresh) {
+					else if (result.refresh[0]) {
 						eval(result.init).call(window);
-						var panelConfig = eval(result.refresh);
+						var panelConfig = eval(result.refresh[0]);
 						var newPanel = Ext.create(panelConfig);
 						
 						controller.on('cardswitch', function() {
@@ -45,11 +45,40 @@ wcli.util = (function() {
 					}
 					else {
 						// No point in setting values after a refresh...
-						wcli.parseStates(result.states);
+						wcli.util.parseStates(result.states);
 						panel.setValues(result.values);
 					}
 				}
 			};
+		},
+		
+		parseStates: function(states) {
+			states = states || {};
+			for (var key in states) {
+				if (key !== '__fence__' && states.hasOwnProperty(key)) {
+					wcli.util.parseState(panel.getFields(key), states[key]);
+				}
+			}
+		},
+		
+		parseState: function(control, state) {
+			if (state.optionNames && state.optionValues) {
+				var names = state.optionNames,
+					values = state.optionValues,
+					items = [];
+				
+				for (var i = 0; i < names.length; i++) {
+					items.push({ text: names[i], value: values[i] });
+				}
+				control.setOptions(items, false);
+			}
+			
+			if (state.disabled) {
+				control.disable();
+			}
+			else {
+				control.enable();
+			}
 		},
 		
 		htmlEncode: function(str) {
@@ -102,8 +131,12 @@ wcli.util = (function() {
 		 * @param {String} cols A stringified column definition array
 		 * @return {String} A row template for a List control
 		 */
-		gridTpl: function(cols, heads) {
+		gridTpl: function(cols, heads, grouped) {
 			cols = JSON.parse(cols);
+			if (grouped) {
+				cols.shift();
+			}
+			
 			var tpl = "";
 			tpl += "<div>";
 			tpl += "<h1>{" + _esc(cols[0]) + "}</h1>";

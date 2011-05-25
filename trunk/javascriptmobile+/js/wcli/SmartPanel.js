@@ -85,6 +85,7 @@ Ext.ns('wcli');
 		else {
 			var hidden = body.filter(function(n) { return n.hidden; });
 			config.bodyMargin = config.bodyPadding = 0;
+			config.scroll = false;
 			config.items = [fullscreen[0]].concat(hidden);
 		}
 		
