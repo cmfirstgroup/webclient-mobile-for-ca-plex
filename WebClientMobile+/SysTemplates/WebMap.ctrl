@@ -1,0 +1,21 @@
+/(!EnableAction:SetValue,SetState,SetFocus)
+
+/(!StatesArea)
+	/(!Action:SetValue)"/(!NameID)": {
+		"location": /(!This)
+	},/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+{
+	xtype: "map",
+	id: "/(!NameID)",
+	cls: "wcli-fullscreen",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	mapOptions: {
+		center: wcli.util.getCoords("/(!This)")
+	}
+},

@@ -1,11 +1,9 @@
-/(!EnableAction:SetValue,SetState,SetFocus)
-
-/(!ValuesArea)
-	/(!Action:SetValue)"/(!NameID)": /(!This),/(!Action)
-/(!ValuesArea)
+/(!EnableAction:SetState,SetFocus)
 
 /(!StatesArea)
-	/(!Action:SetState)"/(!NameID)": "",/(!Action)
+	/(!Action:SetState)"/(!NameID)": {
+		"disabled": /(!If:/(!Property:Disabled)=Yes)true/(!Else)false/(!If)
+	},/(!Action)
 /(!StatesArea)
 
 /(!FocusArea)
@@ -13,6 +11,14 @@
 /(!FocusArea)
 
 {
-html: '<a href="/(!This)" target="_blank">/(!Param:label)</a>'
+	xtype: "button",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	disabled: /(!If:/(!Property:Disabled)=Yes)true/(!Else)false/(!If),
+	iconMask: true,
+	iconCls: "/(!Param:iconCls)",
+	ui: "/(!Param:ui)" || "plain",
+	handler: function(b, e) {
+		window.location = "/(!This)";
+	},
+	text: "/(!Param:label)" || "Link"
 },
-
