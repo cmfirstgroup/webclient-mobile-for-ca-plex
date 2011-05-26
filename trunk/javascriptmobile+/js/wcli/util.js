@@ -32,16 +32,16 @@ wcli.util = (function() {
 							}
 						})();
 					}
-					else if (result.refresh[0]) {
+					else if (result.refresh) {
 						eval(result.init).call(window);
-						var panelConfig = eval(result.refresh[0]);
+						var panelConfig = eval(result.refresh);
 						var newPanel = Ext.create(panelConfig);
 						
 						controller.on('cardswitch', function() {
 							panel.destroy();
 							window.panel = newPanel;
 						}, { single: true });
-						controller.setActiveItem(newPanel, 'slide');
+						controller.setActiveItem(newPanel/*, 'slide'*/);
 					}
 					else {
 						// No point in setting values after a refresh...
@@ -55,13 +55,21 @@ wcli.util = (function() {
 		parseStates: function(states) {
 			states = states || {};
 			for (var key in states) {
-				if (key !== '__fence__' && states.hasOwnProperty(key)) {
-					wcli.util.parseState(panel.getFields(key), states[key]);
+				if (states.hasOwnProperty(key)) {
+					var ctl = panel.getFields(key);
+					if (!ctl || ctl.length === 0) {
+						ctl = Ext.getCmp(key);
+					}
+					wcli.util.parseState(ctl, states[key]);
 				}
 			}
 		},
 		
 		parseState: function(control, state) {
+			if (!control) {
+				return;
+			}
+			
 			if (state.optionNames && state.optionValues) {
 				var names = state.optionNames,
 					values = state.optionValues,
@@ -73,11 +81,20 @@ wcli.util = (function() {
 				control.setOptions(items, false);
 			}
 			
-			if (state.disabled) {
-				control.disable();
+			if (state.gridCols && state.gridRows) {
+				var store = window[control.name + '_store'],
+					storeConf = wcli.util.gridStore(control.name,
+						state.gridCols, state.gridRows);
+				store.loadData(storeConf.data);
 			}
-			else {
-				control.enable();
+			
+			if (typeof state.disabled !== 'undefined') {
+				control[state.disabled ? 'disable' : 'enable']();
+			}
+			
+			if (state.location) {
+				var coords = wcli.util.getCoords(state.location);
+				control.update(coords);
 			}
 		},
 		
@@ -151,8 +168,13 @@ wcli.util = (function() {
 		},
 		
 		gridStore: function(model, cols, rows) {
-			cols = JSON.parse(cols);
-			rows = JSON.parse(rows);
+			if (typeof cols === 'string') {
+				cols = JSON.parse(cols);
+			}
+			if (typeof rows === 'string') {
+				rows = JSON.parse(rows);
+			}
+			
 			var store = {
 				model: model,
 				groupField: _esc(cols[0]),
@@ -192,6 +214,21 @@ wcli.util = (function() {
 			}
 			
 			return new Date(year, month - 1, day);
+		},
+		
+		getCoords: function(coordsStr) {
+			var coords = coordsStr.split(','),
+				long, lat;
+			if (coords.length >= 2) {
+				lat = parseFloat(coords[0].trim());
+				long = parseFloat(coords[1].trim());
+			}
+			else {
+				lat = 30.238339;
+				long = -97.879745;
+			}
+				
+			return new google.maps.LatLng(lat, long);
 		}
 	});
 	
