@@ -98,7 +98,16 @@ Ext.ns('wcli');
 			Ext.apply(config, _buildPanelConfig(plexConfig));
 			
 			wcli.SmartPanel.superclass.constructor.call(this, config);
-		}
+		},
+		
+		// The default getFields does not include docked items
+		getFields: function (byName) {
+			var base = wcli.SmartPanel.superclass.getFields,
+	        	bodyFields = base.call(this, byName),
+	        	toolbarFields = base.call({ items: this.dockedItems }, byName);
+			
+	        return Ext.apply(bodyFields, toolbarFields);
+	    }
 	});
 })();
 
