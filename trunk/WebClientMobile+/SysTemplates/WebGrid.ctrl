@@ -1,3 +1,32 @@
+/(!EnableAction:Grid.Clear,Grid.Insert,Grid.Remove,Grid.Update)
+
+/(!StatesArea)
+	/(!Action:Grid.Clear)
+	"/(!NameID)": {
+		"gridCols": /(!This:!jsonCols),
+		"gridRows": /(!This:!jsonRows)
+	},
+	/(!Action)
+	/(!Action:Grid.Insert)
+	"/(!NameID)": {
+		"gridCols": /(!This:!jsonCols),
+		"gridRows": /(!This:!jsonRows)
+	},
+	/(!Action)
+	/(!Action:Grid.Remove)
+	"/(!NameID)": {
+		"gridCols": /(!This:!jsonCols),
+		"gridRows": /(!This:!jsonRows)
+	},
+	/(!Action)
+	/(!Action:Grid.Update)
+	"/(!NameID)": {
+		"gridCols": /(!This:!jsonCols),
+		"gridRows": /(!This:!jsonRows)
+	},
+	/(!Action)
+/(!StatesArea)
+
 /(!JSInit)
 	/(!WebGrid-model.inc)
 /(!JSInit)
@@ -17,7 +46,7 @@
 {
 	xtype: "list",
 	name: "/(!NameID)",
-	cls: "wcli-fullscreen-grid",
+	cls: "wcli-fullscreen",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	grouped: "/(!Param:grouped)" === "true",
 	itemTpl: wcli.util.gridTpl(wcli.util.htmlDecode("/(!This:!jsonCols)"), [

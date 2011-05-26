@@ -9,28 +9,28 @@
 	"/(!NameID)": {
 		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 		"optionNames": /(!jsonOptions),
-		"optionValues: /(!jsonValues) 
+		"optionValues": /(!jsonValues) 
 	},
 	/(!Action)
 	/(!Action:Combo.Clear)
 	"/(!NameID)": {
 		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 		"optionNames": /(!jsonOptions),
-		"optionValues: /(!jsonValues) 
+		"optionValues": /(!jsonValues) 
 	},
 	/(!Action)
 	/(!Action:Combo.Remove)
 	"/(!NameID)": {
 		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 		"optionNames": /(!jsonOptions),
-		"optionValues: /(!jsonValues) 
+		"optionValues": /(!jsonValues) 
 	},
 	/(!Action)
 	/(!Action:Combo.Add)
 	"/(!NameID)": {
 		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 		"optionNames": /(!jsonOptions),
-		"optionValues: /(!jsonValues) 
+		"optionValues": /(!jsonValues) 
 	},
 	/(!Action)
 /(!StatesArea)
