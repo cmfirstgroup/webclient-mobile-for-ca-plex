@@ -32,7 +32,7 @@ wcli.util = (function() {
 							}
 						})();
 					}
-					else if (result.refresh) {
+					else if (result.panelId !== panel.panelId) {
 						eval(result.init).call(window);
 						var panelConfig = eval(result.refresh);
 						var newPanel = Ext.create(panelConfig);
@@ -93,7 +93,12 @@ wcli.util = (function() {
 			}
 			
 			if (state.location) {
-				var coords = wcli.util.getCoords(state.location);
+				var coords = wcli.util.getCoords(state.location),
+					marker = window[control.id + '_marker'];
+				setTimeout(function() {
+					marker.setAnimation(google.maps.Animation.DROP);
+					marker.setPosition(coords);
+				}, 2000);
 				control.update(coords);
 			}
 		},
