@@ -49,6 +49,7 @@
 	cls: "wcli-fullscreen",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	grouped: "/(!Param:grouped)" === "true",
+	indexBar: "/(!Param:indexBar)" === "true",
 	itemTpl: wcli.util.gridTpl(wcli.util.htmlDecode("/(!This:!jsonCols)"), [
 		/(!AttachPoint:name=ColumnsArea:inlinetemplate:sep=,)
 			"/(!Text:htmlbr)"
