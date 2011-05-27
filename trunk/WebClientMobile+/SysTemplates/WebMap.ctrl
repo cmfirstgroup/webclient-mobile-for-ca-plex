@@ -21,7 +21,7 @@
 {
 	xtype: "map",
 	id: "/(!NameID)",
-	fullscreen: true,
+	flex: 1,
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	mapOptions: {
 		center: wcli.util.getCoords("/(!This)")
