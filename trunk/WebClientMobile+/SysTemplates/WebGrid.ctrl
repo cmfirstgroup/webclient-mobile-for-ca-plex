@@ -46,8 +46,8 @@
 {
 	xtype: "list",
 	name: "/(!NameID)",
-	cls: "wcli-fullscreen",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	fullscreen: true,
 	grouped: "/(!Param:grouped)" === "true",
 	indexBar: "/(!Param:indexBar)" === "true",
 	itemTpl: wcli.util.gridTpl(wcli.util.htmlDecode("/(!This:!jsonCols)"), [
