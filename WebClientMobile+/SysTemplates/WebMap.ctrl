@@ -12,11 +12,12 @@
 /(!FocusArea)
 
 /(!JSOnLoad)
-	window["/(!NameID)_marker"] = new google.maps.Marker({
-		position: wcli.util.getCoords("/(!This)"),
-		map: Ext.getCmp("/(!NameID)").map,
-	});
+	/(!WebMap-marker.inc)
 /(!JSOnLoad)
+
+/(!JSPost)
+	/(!WebMap-marker.inc)
+/(!JSPost)
 
 {
 	xtype: "map",
