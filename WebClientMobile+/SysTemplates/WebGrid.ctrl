@@ -47,7 +47,7 @@
 	xtype: "list",
 	name: "/(!NameID)",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
-	fullscreen: true,
+	flex: 1,
 	grouped: "/(!Param:grouped)" === "true",
 	indexBar: "/(!Param:indexBar)" === "true",
 	itemTpl: wcli.util.gridTpl(wcli.util.htmlDecode("/(!This:!jsonCols)"), [
