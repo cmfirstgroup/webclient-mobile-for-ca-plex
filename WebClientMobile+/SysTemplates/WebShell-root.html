@@ -26,12 +26,10 @@
 				onReady: function() {
 					var panelConfig = /(!If)({
 						xtype: 'smartpanel',
+						panelId: '/(!Panel:!NameID)',
 						url: '/(WSACTION)',
 						scroll: 'vertical',
 						fullscreen: 'true',
-						defaults: {
-							flex: 1
-						},
 						layout: {
 							type : 'vbox',
 							align: 'stretch'

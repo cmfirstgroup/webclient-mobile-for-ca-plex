@@ -1,6 +1,7 @@
 /(!EnableAction:SetValue,SetState,SetFocus)
 
 /(!StatesArea)
+	/(!Action:SetState)/(!Action)
 	/(!Action:SetValue)"/(!NameID)": {
 		"location": /(!This)
 	},/(!Action)
@@ -10,10 +11,17 @@
 	/(!Action:SetFocus)"/(!NameID)",/(!Action)
 /(!FocusArea)
 
+/(!JSOnLoad)
+	window["/(!NameID)_marker"] = new google.maps.Marker({
+		position: wcli.util.getCoords("/(!This)"),
+		map: Ext.getCmp("/(!NameID)").map,
+	});
+/(!JSOnLoad)
+
 {
 	xtype: "map",
 	id: "/(!NameID)",
-	cls: "wcli-fullscreen",
+	fullscreen: true,
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	mapOptions: {
 		center: wcli.util.getCoords("/(!This)")
