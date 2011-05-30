@@ -42,6 +42,7 @@ wcli.util = (function() {
 							window.panel = newPanel;
 						}, { single: true });
 						controller.setActiveItem(newPanel/*, 'slide'*/);
+						eval(result.postInit).call(window);
 					}
 					else {
 						// No point in setting values after a refresh...
