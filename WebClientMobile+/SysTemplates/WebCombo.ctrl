@@ -40,7 +40,7 @@
 /(!FocusArea)
 
 {
-	xtype: "searchfield",
+	xtype: "selectfield",
 	name: "/(!NameID)",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	label: "/(!Param:label)" || "Field",
