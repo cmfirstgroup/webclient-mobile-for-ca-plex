@@ -13,6 +13,24 @@
 /(!FocusArea)
 
 {
-html: '<img src="/(!WsRes)/images//(!This)" alt="/(!Param:label)" />'
-},
 
+	xtype: "imagecomponent",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	disabled: /(!If:/(!Property:Disabled)=Yes)true/(!Else)false/(!If),
+
+	/(!If:/(!Param:height)=)/(!Else)height: "/(!Param:height)",/(!If) 
+	/(!If:/(!Param:width)=)/(!Else)width: "/(!Param:width)",/(!If) 
+
+	imageData: {
+		imageCls: "/(!Param:imageCls)" || "x-image-component",
+		imageSrc: "/(!WsRes)/images//(!This)",
+		imageAlign: "/(!Param:imageAlign)" || "left"
+	},
+
+	handler: function(b, e) {
+		/(!If:/(!Event:phys=Pressed))
+			panel.submit(wcli.util.evt("Pressed", "/(!NameID)"));
+		/(!If)
+	},
+
+},
