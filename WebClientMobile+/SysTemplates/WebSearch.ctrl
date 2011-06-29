@@ -24,7 +24,7 @@
 	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 	listeners: {
 		focus: {
-			fn: function(e) {
+			fn: function() {
 				/(!If:/(!Event:phys=Gained Focus))
 				panel.submit(wcli.util.evt("Gained Focus", "/(!NameID)"));
 				/(!If)
@@ -32,15 +32,15 @@
 			scope: this
 		},
 		blur: {
-			fn: function(e) {
+			fn: function() {
 				/(!If:/(!Event:phys=Lost Focus))
 				panel.submit(wcli.util.evt("Lost Focus", "/(!NameID)"));
 				/(!If)
 			},
 			scope: this
 		},
-		input: {
-			fn: function(e) {
+		keyup: {
+			fn: function() {
 				/(!If:/(!Event:phys=Modified))
 				panel.submit(wcli.util.evt("Modified", "/(!NameID)"));
 				/(!If)
@@ -48,7 +48,7 @@
 			scope: this
 		},
 		change: {
-			fn: function(e) {
+			fn: function() {
 				/(!If:/(!Event:phys=Updated))
 				panel.submit(wcli.util.evt("Updated", "/(!NameID)"));
 				/(!If)
