@@ -93,6 +93,8 @@ Ext.ns('wcli');
 	}
 	
 	wcli.SmartPanel = Ext.extend(Ext.form.FormPanel, {
+		submitOnAction: false,
+		
 		constructor: function(config) {
 			var plexConfig = config.plexConfig;
 			Ext.apply(config, _buildPanelConfig(plexConfig));
