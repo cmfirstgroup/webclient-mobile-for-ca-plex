@@ -18,6 +18,7 @@ wcli.util = (function() {
 		evt: function(evt, id) {
 			return {
 				params: {
+					pnlid: panel.panelId,
 					_type: "json",
 					ctlact: id + ":" + evt,
 					focus: id
