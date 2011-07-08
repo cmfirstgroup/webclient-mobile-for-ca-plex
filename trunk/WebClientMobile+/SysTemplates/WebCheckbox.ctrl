@@ -19,7 +19,9 @@
 	name: "/(!NameID)",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	label: "/(!Property:Text)" || "Field",
-	value: "/(!This)",
+	uncheckedValue: "/(!UncheckedValue)",
+	checkedValue: "/(!CheckedValue)",
+	value: "/(!This)" || "/(!UncheckedValue)",
 	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 	listeners: {
 		focus: {
@@ -40,12 +42,18 @@
 		},
 		change: {
 			fn: function(e) {
-				/(!If:/(!Event:phys=Updated))
-				panel.submit(wcli.util.evt("Updated", "/(!NameID)"));
-				/(!If)
-				/(!If:/(!Event:phys=Modified))
-				panel.submit(wcli.util.evt("Modified", "/(!NameID)"));
-				/(!If)
+				// The initial setValue is calling the change event when it shouldn't,
+				// so catch the error and ignore it
+				try {
+					/(!If:/(!Event:phys=Updated))
+					panel.submit(wcli.util.evt("Updated", "/(!NameID)"));
+					/(!If)
+					/(!If:/(!Event:phys=Modified))
+					panel.submit(wcli.util.evt("Modified", "/(!NameID)"));
+					/(!If)
+				}
+				catch (e) {
+				}
 			},
 			scope: this
 		}
