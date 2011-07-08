@@ -1,4 +1,4 @@
-/(OutTo:json.panelId)"/(!Panel:!NameID)"/(OutTo)
+/(OutTo:json.panelId)/(PNLID)/(OutTo)
 /(OutTo:json.success)"true"/(OutTo)
 
 /(OutTo:json.values:comments=js)

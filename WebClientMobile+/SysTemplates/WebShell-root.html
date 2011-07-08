@@ -12,6 +12,7 @@
 		<script type="text/javascript" src="/(!WsRes)/js/sencha-touch-debug.js"></script>
 		<script type="text/javascript" src="/(!WsRes)/js/wcli/util.js"></script>
 		<script type="text/javascript" src="/(!WsRes)/js/wcli/SmartPanel.js"></script>
+		<script type="text/javascript" src="/(!WsRes)/js/wcli/CheckboxToggle.js"></script>
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 		
 		/(!AttachPoint:name=HeadArea)
@@ -26,7 +27,7 @@
 				onReady: function() {
 					var panelConfig = /(!If)({
 						xtype: 'smartpanel',
-						panelId: '/(!Panel:!NameID)',
+						panelId: /(PNLID),
 						url: '/(WSACTION)',
 						scroll: 'vertical',
 						fullscreen: 'true',
