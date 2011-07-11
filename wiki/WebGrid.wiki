@@ -1,0 +1,9 @@
+#summary How to use the WebGrid template
+
+= Introduction =
+
+WebGrid is attached to CA Plex grid controls.
+
+= Details =
+
+
