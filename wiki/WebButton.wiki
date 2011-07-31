@@ -13,5 +13,5 @@ AttachPoint
 -MainArea - disclosure button in the main area
 -ToolbarArea - Native control in tool bar area
 
-[iconCls]
-[ui]
+[iconClsList]
+[uilist]
