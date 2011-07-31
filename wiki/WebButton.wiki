@@ -7,7 +7,9 @@ Describes how to use push button
 
 = Details =
 
-Add your content here.  Format your content with:
+Example
+SaveButton:ToolbarArea:iconCls=action:align=left:toolbarNum=1
+
 
 AttachPoint
 -MainArea - disclosure button in the main area
