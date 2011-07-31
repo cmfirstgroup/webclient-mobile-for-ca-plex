@@ -1,0 +1,17 @@
+#summary Using Push Buttons
+
+= Introduction =
+
+Describes how to use push button
+
+
+= Details =
+
+Add your content here.  Format your content with:
+
+AttachPoint
+-MainArea - disclosure button in the main area
+-ToolbarArea - Native control in tool bar area
+
+[iconCls]
+[ui]
