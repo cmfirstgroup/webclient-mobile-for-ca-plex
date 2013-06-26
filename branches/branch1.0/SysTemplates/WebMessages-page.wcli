@@ -1,0 +1,45 @@
+
+/(!LinkArea)
+	/(!MobileAlerts)
+	/(!Panel:!EnableAction:Alert,Enquiry)
+/(!LinkArea)
+	
+/(!AlertsArea)
+	/(!MobileAlerts)
+	/(!Panel:!EnableAction:Alert,Enquiry)
+
+	/(!Panel:!Action:Alert)
+	{
+		message: /(Embed:html)/(!ActionArg)/(Embed),
+		type: /(AlertType)
+	},
+	/(!Panel:!Action)
+	
+	/(!Panel:!Action:Enquiry)
+	{
+		message: /(Embed:html)/(!ActionArg)/(Embed),
+		type: /(AlertType)	
+	},
+	/(!Panel:!Action)
+	
+/(!AlertsArea)
+
+/(!JSOnReady)
+	/(ALERTS)
+		message = "/(Embed:html)/(AlertMsg)/(Embed)"; messageType = "/(AlertType)";
+		if (messageType == "dialog"){
+			wcli.msg.alert('', message, function() {									
+			});
+		}
+		if (messageType == "enquiry"){
+			wcli.msg.confirm('', message, function(btn) {
+				if(btn == "yes"){
+					panel.submit(wcli.util.evt(null, null, { enqact: 1 }));
+				}
+				if(btn == "cancel"){
+					panel.submit(wcli.util.evt(null, null, { enqact: 3 }));
+				}
+			});
+		}
+	/(ALERTS)
+/(!JSOnReady)
