@@ -1,0 +1,59 @@
+/(!EnableAction:SetValue,SetState,SetFocus)
+
+/(!ValuesArea)
+	/(!Action:SetValue)"/(!NameID)": /(!This),/(!Action)
+/(!ValuesArea)
+
+/(!StatesArea)
+	/(!Action:SetState)"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If)
+	},/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+{
+	xtype: "searchfield",
+	name: "/(!NameID)",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	label: "/(!Param:label)" || undefined,
+	value: /(!This),
+	width: 150,
+	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+	listeners: {
+		focus: {
+			fn: function() {
+				/(!If:/(!Event:phys=Gained Focus))
+				panel.submit(wcli.util.evt("Gained Focus", "/(!NameID)"));
+				/(!If)
+			},
+			scope: this
+		},
+		blur: {
+			fn: function() {
+				/(!If:/(!Event:phys=Lost Focus))
+				panel.submit(wcli.util.evt("Lost Focus", "/(!NameID)"));
+				/(!If)
+			},
+			scope: this
+		},
+		keyup: {
+			fn: function() {
+				/(!If:/(!Event:phys=Modified))
+				panel.submit(wcli.util.evt("Modified", "/(!NameID)"));
+				/(!If)
+			},
+			scope: this
+		},
+		change: {
+			fn: function() {
+				/(!If:/(!Event:phys=Updated))
+				panel.submit(wcli.util.evt("Updated", "/(!NameID)"));
+				/(!If)
+			},
+			scope: this
+		}
+	}
+},
