@@ -204,14 +204,15 @@ Ext.define('wcli.field.Number',{
 		controlName: {}
 	},
 	
-	doInitValue : function() {
+	/*doInitValue : function() {
         var value = this.getInitialConfig().value;
 
         if (value) {
-            value = this.applyValue(value);
+            this.applyValue(value);
         }
 
         this.originalValue = value;
+  
         if (value == "0") {
         	this.getComponent().input.dom.value = "";
         }
@@ -220,7 +221,7 @@ Ext.define('wcli.field.Number',{
     	if (value == "0") {
         	this.getComponent().input.dom.value = "";
         }
-    }
+    }*/
 });
 
 Ext.define('wcli.field.Integer',{
