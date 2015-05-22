@@ -57,9 +57,10 @@ new wcli.field.Select({
 		{
 			items.push({text: name[i], value: value[i]});
 		}
+		items.push({text: "", value: ""});
 		return items;
 	})(),
-	value: /(!This:value),
+	value: /(!This:mobilevalue),
 	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 	hidden: /(!If:/(!Property:Visible)=Yes)false/(!Else)true/(!If),
 	listeners: {
