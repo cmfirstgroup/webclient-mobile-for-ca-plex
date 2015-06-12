@@ -90,12 +90,17 @@ Ext.ns('wcli');
 			var bodyItems = [],
 				bodyMap = {};
 			for (var i = 0; i < body.length; i++) {
-				var item = body[i],
-					name = item.getControlName().fieldSet || '',
-					fieldSet = _getMappedItem(name, bodyMap, bodyItems, {
-						name: name,
-						items: []
-					});
+				var item = body[i];
+				if(typeof item.getControlName == 'function'){
+					var name = item.getControlName().fieldSet || '';
+				}
+				else{
+					var name = '';
+				}
+				fieldSet = _getMappedItem(name, bodyMap, bodyItems, {
+					name: name,
+					items: []
+				});
 				fieldSet.items.push(item);
 			}
 			for (var i = 0; i < bodyItems.length; i++) {
