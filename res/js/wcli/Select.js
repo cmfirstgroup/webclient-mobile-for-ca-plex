@@ -2,11 +2,21 @@ Ext.ns('wcli');
 Ext.ns('wcli.field');
 
 Ext.define('wcli.field.Select',{
-	extend: 'Ext.field.Select',
-	
-	config: {
+    extend: 'Ext.form.Select',
+		
+	config: {	
+		
+		defaultPhonePickerConfig : {
+            doneButton : nls.picker.doneButton,
+            cancelButton : nls.picker.cancelButton
+        },
+        defaultTabletPickerConfig : {
+            doneButton : nls.picker.doneButton,
+            cancelButton : nls.picker.cancelButton
+        },
+        
 		controlName: {}
-	},
+	},	
 	
     setValue: function(value) {
 	var idx = 0, record;
@@ -32,7 +42,7 @@ Ext.define('wcli.field.Select',{
             this.fireEvent('change', this, this.getValue());
         //}
     },
-
+    
     onListSelect: function(selModel, selected) {
         if (selected) {
             this.setValue(selected.get("text"));
