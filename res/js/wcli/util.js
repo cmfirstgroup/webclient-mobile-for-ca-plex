@@ -25,7 +25,12 @@ wcli.msg.YES = {text : nls.msg.yesButton,    itemId : 'yes', ui : 'action' };
 wcli.msg.CANCEL = {text : nls.msg.cancelButton,    itemId : 'cancel'};
 
 wcli.msg.confirm = function(title, message, buttons, fn, scope) {
-    return Ext.Msg.show({
+    //Replace HTML markup
+	message = message.replace('~&gt;~','>');
+	message = message.replace('~&lt;~','<');
+	message = message.replace('~&lt;~/','<');
+	//
+	return Ext.Msg.show({
         title       : title || null,
         message     : message || null,
         buttons     : buttons,
