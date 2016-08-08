@@ -2,7 +2,6 @@
 /(!If:/(!Property:StaticType)=Text)
 new wcli.Panel({
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
-	cls: '/(!Param:cls) /(!NameID)',
-	html: '<p class="webStatic"> /(!Text) </p>'
+	html: '<p style="font-size:10px"> /(!Text) </p>'
 }),
 /(!If)
