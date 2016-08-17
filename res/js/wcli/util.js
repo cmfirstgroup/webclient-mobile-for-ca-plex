@@ -25,12 +25,12 @@ wcli.msg.YES = {text : nls.msg.yesButton,    itemId : 'yes', ui : 'action' };
 wcli.msg.CANCEL = {text : nls.msg.cancelButton,    itemId : 'cancel'};
 
 wcli.msg.confirm = function(title, message, buttons, fn, scope) {
-    //Replace HTML markup
+	//Replace HTML markup
 	message = message.replace('~&gt;~','>');
 	message = message.replace('~&lt;~','<');
 	message = message.replace('~&lt;~/','<');
 	//
-	return Ext.Msg.show({
+    return Ext.Msg.show({
         title       : title || null,
         message     : message || null,
         buttons     : buttons,
@@ -152,6 +152,7 @@ wcli.util = (function() {
 						// No point in setting values after a refresh...
 						wcli.util.parseStates(result.states);
 						panel.setValues(result.values);
+						wcli.util.setHtmls(result.htmls)
 					}
 				}
 			};
@@ -223,10 +224,6 @@ wcli.util = (function() {
 				var panelConfig = eval(state.childPanel);
 				control.removeAll();
 				control.add(panelConfig);
-			}
-			
-			if (state.additionalcode){
-				eval(state.additionalcode);
 			}
 		},
 		
@@ -538,6 +535,21 @@ wcli.util = (function() {
 					Ext.DomHelper.append(Ext.getBody(), { tag: 'link', rel: 'stylesheet', type: 'text/css', href: css });
 				});
 			}
+		},
+		
+		setHtmls: function(values) {
+	        values = values || {};
+	
+	        for (name in values) {
+	            if (values.hasOwnProperty(name)) {
+	                value = values[name];
+	                if(Ext.getCmp(name)){
+	                	Ext.getCmp(name).setHtml(value);
+	                }
+	            }
+	        }
+	
+	        return this;
 		}
 	});
 	

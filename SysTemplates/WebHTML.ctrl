@@ -1,8 +1,8 @@
 /(!EnableAction:SetValue,SetState,SetFocus)
 
-/(!ValuesArea)
+/(!HtmlsArea)
 	/(!Action:SetValue)"/(!NameID)": /(!This),/(!Action)
-/(!ValuesArea)
+/(!HtmlsArea)
 
 /(!StatesArea)
 	/(!Action:SetState)"/(!NameID)": {
