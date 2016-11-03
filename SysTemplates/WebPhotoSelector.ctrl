@@ -23,7 +23,7 @@ new wcli.PhotoSelector({
 	value: /(!This),
 	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 	hidden: /(!If:/(!Property:Visible)=Yes)false/(!Else)true/(!If),
-	html: '<span class="x-button-label" style="display: block; text-align: center; width: 100%">Select Photo</span><input id="/(!NameID)file" type="file" capture="camera" accept="image/*" onchange="fileSelectValueChanged(/(!NameID))" style="display: none;"/><div id="/(!NameID)PreviewDiv" style="display: none; text-align: center;"><img id="/(!NameID)PreviewImg" style="max-width: 260px; max-height: 260px"/></div>',
+	html: '<span class="x-button-label" style="display: block; text-align: center; width: 100%">Select Photo</span><input id="/(!NameID)file" type="file" accept="image/*" onchange="fileSelectValueChanged(/(!NameID))" style="display: none;"/><div id="/(!NameID)PreviewDiv" style="display: none; text-align: center;"><img id="/(!NameID)PreviewImg" style="max-width: 260px; max-height: 260px"/></div>',
 	listeners: {
 		painted: function(){
 				Ext.get('/(!NameID)').addListener( 'tap', function(e){
