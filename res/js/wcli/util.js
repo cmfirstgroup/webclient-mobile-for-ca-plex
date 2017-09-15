@@ -71,7 +71,7 @@ wcli.util = (function() {
 					focus: id
 				}, params),
 				success: function(form, result) {
-		            wcli.stopLoading();
+		            //wcli.stopLoading();
 					/* Begin create new input field for IOS bug workaround keyboard not displaying on the first numeric field */
 		            
 		            //var inputField = document.createElement("INPUT");
@@ -82,6 +82,7 @@ wcli.util = (function() {
 					/* End create new input field */
 					
 					if (result.alerts.length > 1) {
+						wcli.stopLoading();
 						var alerts = result.alerts;
 						alerts.pop();
 						var allmessages = "";
@@ -135,6 +136,7 @@ wcli.util = (function() {
 									Ext.DomQuery.select('.x-translatable-hboxfix').forEach(function(dom) { dom.style.height = '100%'; });
 								}, 200);
 							}
+							wcli.stopLoading();
 							
 						},null, { single: true });
 						if (typeof panel.config.transition != "undefined") {
@@ -152,7 +154,8 @@ wcli.util = (function() {
 						// No point in setting values after a refresh...
 						wcli.util.parseStates(result.states);
 						panel.setValues(result.values);
-						wcli.util.setHtmls(result.htmls)
+						wcli.util.setHtmls(result.htmls);
+						wcli.stopLoading();
 					}
 				}
 			};
@@ -557,7 +560,7 @@ wcli.util = (function() {
 	   //wcli.loadTimer = null;
 
 	   /* The amount of time in milliseconds before the load mask should appear. */
-	   wcli.LOADMASK_TIME = 350;
+	   wcli.LOADMASK_TIME = 0;
 
 	   /**
 	    * Called when a server request is started. If the request is not finished

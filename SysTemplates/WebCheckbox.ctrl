@@ -15,6 +15,11 @@
 	/(!Action:SetFocus)"/(!NameID)",/(!Action)
 /(!FocusArea)
 
+/(!JSOnLoad)
+	Ext.getCmp('/(!NameID)')._checked = (/(!This) == '/(!CheckedValue)') ? false : true;
+	Ext.getCmp('/(!NameID)').setChecked(/(!This));
+/(!JSOnLoad)
+
 new wcli.field.Checkbox({
 	id: "/(!NameID)",
 	name: "/(!NameID)",
@@ -24,7 +29,7 @@ new wcli.field.Checkbox({
 	labelWidth: /(!If:/(!Param:width))"/(!Param:width)" /(!Else)"40%" /(!If),
 	uncheckedValue: "/(!UncheckedValue)",
 	checkedValue: "/(!CheckedValue)",
-	checked: /(!This) === "/(!CheckedValue)",
+	checked: (/(!This) === "/(!CheckedValue)") ? true : false,
 	value: /(!This) || "/(!UncheckedValue)",
 	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 	hidden: /(!If:/(!Property:Visible)=No)true/(!Else)false/(!If),
@@ -43,15 +48,13 @@ new wcli.field.Checkbox({
 				// The initial setValue is calling the change event when it shouldn't,
 				// so catch the error and ignore it
 				try {
-					var control = Ext.getCmp("/(!NameID)");
-					var currentValue = control.getValue();
-					if (currentValue === "/(!CheckedValue)"){
-						control.setValue("/(!UncheckedValue)");
-					}
-					else{
-						control.setValue("/(!CheckedValue)");
-					}
+					var control = this;
 					if (control.notFirstChanged){
+						if (this._checked == true){
+							this.setValue(this.getCheckedValue());
+						} else {
+							this.setValue(this.getUncheckedValue());
+						}
 						/(!If:/(!Event:phys=Updated))
 						panel.submit(wcli.util.evt("Updated", "/(!NameID)"));
 						/(!If)
