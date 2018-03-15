@@ -22,6 +22,7 @@ new wcli.field.SpinnerEdit({
 	labelWidth: "40%",
 	value: /(!This),
 	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+	stepValue: /(!If:/(!Param:stepValue))/(!Param:stepValue)/(!Else)1/(!If),
 	listeners: {
 		focus: function() {
 				/(!If:/(!Event:phys=Gained Focus))
