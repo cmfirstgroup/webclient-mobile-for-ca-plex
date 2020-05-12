@@ -405,7 +405,7 @@ wcli.util = (function() {
 			return tpl;
 		},
 		
-		gridDataStore: function(model, cols, rows, grouped) {
+		gridDataStore: function(model, cols, rows, grouped, type) {
 			if (typeof cols === 'string') {
 				cols = JSON.parse(cols);
 			}
@@ -458,6 +458,9 @@ wcli.util = (function() {
 				var	item = {};
 			
 				for (var j = 0; j < row.length; j++) {
+					if (type[j].dataType === "Time") {
+						row[j].v = wcli.Time(row[j].v);
+					}
 					var name = cols[j];
 					item[_esc(name)] = row[j].v;
 				}

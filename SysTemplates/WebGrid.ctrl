@@ -28,6 +28,14 @@
 /(!StatesArea)
 
 /(!JSInit)
+		/(!NameID)_cols = [
+			/(!AttachPoint:name=ColumnsArea:inlinetemplate:sep=,)
+				{ colHeader: "/(!Text:htmlbr)",
+				  dataType: "/(!Edit:!DataType)"
+				}
+			/(!EnableAction:SetState)
+			/(!AttachPoint)
+		];
 	 var grouped = "/(!Param:grouped)" === "true";
 	/(!WebGrid-model.inc)
 /(!JSInit)
@@ -45,16 +53,7 @@
 },
 /(!MainArea)
 
-(function() {
-		/(!NameID)_cols = [
-			/(!AttachPoint:name=ColumnsArea:inlinetemplate:sep=,)
-				{ colHeader: "/(!Text:htmlbr)",
-				  dataType: "/(!Edit:!DataType)"
-				}
-			/(!EnableAction:SetState)
-			/(!AttachPoint)
-		];
-})() ||
+
 
 /(!If:/(!Param:renderTplGenerator))
 new Ext.Panel({
