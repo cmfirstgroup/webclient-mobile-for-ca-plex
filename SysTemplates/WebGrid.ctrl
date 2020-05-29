@@ -41,6 +41,14 @@
 /(!JSInit)
 
 /(!JS)
+		/(!NameID)_cols = [
+			/(!AttachPoint:name=ColumnsArea:inlinetemplate:sep=,)
+				{ colHeader: "/(!Text:htmlbr)",
+				  dataType: "/(!Edit:!DataType)"
+				}
+			/(!EnableAction:SetState)
+			/(!AttachPoint)
+		];
 	 var grouped = "/(!Param:grouped)" === "true";
 	/(!WebGrid-model.inc)
 /(!JS)
