@@ -458,7 +458,7 @@ wcli.util = (function() {
 				var	item = {};
 			
 				for (var j = 0; j < row.length; j++) {
-					if (type[j] && type[j].dataType === "Time") {
+					if (type && type[j] && type[j].dataType === "Time") {
 						row[j].v = wcli.Time(row[j].v);
 					}
 					var name = cols[j];
