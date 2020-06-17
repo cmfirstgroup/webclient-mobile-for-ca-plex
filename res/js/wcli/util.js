@@ -460,6 +460,18 @@ wcli.util = (function() {
 				for (var j = 0; j < row.length; j++) {
 					if (type && type[j] && type[j].dataType === "Time") {
 						row[j].v = wcli.Time(row[j].v);
+					} else if (type && type[j] && type[j].dataType === "Date"){
+						row[j].v = Ext.Date.format(wcli.util.getDate(row[2].v), 'm/d/Y');
+					}
+					if (type && type[j] && Object.keys(type[j]).length > 2) {
+						var value = type[j].values;
+						for (var c = 0; c < value.length; c++) {
+							if (row[j].v === value[c]){
+								var Index = value.indexOf(value[c]);
+								row[j].v = type[j].options[Index];
+								break;
+							}
+						}
 					}
 					var name = cols[j];
 					item[_esc(name)] = row[j].v;
