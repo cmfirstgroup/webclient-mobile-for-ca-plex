@@ -193,7 +193,7 @@ wcli.util = (function() {
 			if (state.gridCols && state.gridRows) {
 				var store = window[control.getName() + '_store'],
 					storeConf = wcli.util.gridDataStore(control.getName(),
-						state.gridCols, state.gridRows, false);
+						state.gridCols, state.gridRows, false, window[control.getName() + '_dataType']);
 				store.clearData();
 				store.addData(storeConf.data);
 				
