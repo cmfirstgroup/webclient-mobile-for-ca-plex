@@ -461,7 +461,7 @@ wcli.util = (function() {
 					if (type && type[j] && type[j].dataType === "Time") {
 						row[j].v = wcli.Time(row[j].v);
 					} else if (type && type[j] && type[j].dataType === "Date"){
-						row[j].v = Ext.Date.format(wcli.util.getDate(row[2].v), 'm/d/Y');
+						row[j].v = Ext.Date.format(wcli.util.getDate(row[j].v), 'm/d/Y');
 					}
 					if (type && type[j] && Object.keys(type[j]).length > 2) {
 						var value = type[j].values;
