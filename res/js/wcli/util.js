@@ -193,7 +193,7 @@ wcli.util = (function() {
 			if (state.gridCols && state.gridRows) {
 				var store = window[control.getName() + '_store'],
 					storeConf = wcli.util.gridDataStore(control.getName(),
-						state.gridCols, state.gridRows, false);
+						state.gridCols, state.gridRows, false, window[control.getName() + '_dataType']);
 				store.clearData();
 				store.addData(storeConf.data);
 				
@@ -405,7 +405,7 @@ wcli.util = (function() {
 			return tpl;
 		},
 		
-		gridDataStore: function(model, cols, rows, grouped) {
+		gridDataStore: function(model, cols, rows, grouped, type) {
 			if (typeof cols === 'string') {
 				cols = JSON.parse(cols);
 			}
@@ -458,6 +458,21 @@ wcli.util = (function() {
 				var	item = {};
 			
 				for (var j = 0; j < row.length; j++) {
+					if (type && type[j] && type[j].dataType === "Time") {
+						row[j].v = wcli.Time(row[j].v);
+					} else if (type && type[j] && type[j].dataType === "Date"){
+						row[j].v = Ext.Date.format(wcli.util.getDate(row[j].v), 'm/d/Y');
+					}
+					if (type && type[j] && Object.keys(type[j]).length > 2) {
+						var value = type[j].values;
+						for (var c = 0; c < value.length; c++) {
+							if (row[j].v === value[c]){
+								var Index = value.indexOf(value[c]);
+								row[j].v = type[j].options[Index];
+								break;
+							}
+						}
+					}
 					var name = cols[j];
 					item[_esc(name)] = row[j].v;
 				}

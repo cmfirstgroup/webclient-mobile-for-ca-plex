@@ -191,6 +191,32 @@ Ext.define('wcli.field.text',{
 
 });
 
+Ext.define('wcli.field.Time',{
+	extend: 'wcli.field.BaseText', 
+	config: {
+		controlName: {}
+	},
+
+	
+	doInitValue : function() {
+    	
+        var value = this.getInitialConfig().value;
+    	this.originalValue = value;
+    },
+    
+    getValue: function() {
+        var value = this.callParent();
+        if (this.eventDispatcher && this.eventDispatcher.controller.info.eventName != "keyup" && this.eventDispatcher.controller.info.eventName != "blur" && this.eventDispatcher.controller.firingListeners[0].fn != "onInputTap"){
+        	if (nls.language === "fi" || nls.language === "de" || nls.language === "it" || nls.language === "fr" || nls.language === "nl" || nls.language === "es"){
+            		value += ":00";
+            }
+        }
+        
+        return value;
+    }
+
+});
+
 Ext.define('wcli.field.Text',{
 	extend: 'wcli.field.BaseText', 
 	config: {

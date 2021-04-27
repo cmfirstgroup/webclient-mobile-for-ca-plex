@@ -68,5 +68,9 @@ Ext.define('wcli.field.Checkbox',{
         // we need to get the latest value from the {@link #input} and then update the value
         this._checked = this.getComponent().getChecked();
         return this._checked;
+    },
+    
+    getSubmitValue: function() {
+        return (this.getChecked()) ? Ext.isEmpty(this._value) ? true : this._value : this._value;
     }
 });

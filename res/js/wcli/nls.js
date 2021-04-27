@@ -26,7 +26,7 @@ nls.msg.de = {
 };
 
 nls.msg.it = {
-		yesButton: 'SÏ',
+		yesButton: 'S√¨',
 		noButton: 'No',
 		cancelButton: 'Annullare',
 		okButton: 'OK'
@@ -50,6 +50,13 @@ nls.msg.es = {
 		yesButton: 'Si',
 		noButton: 'No',
 		cancelButton: 'Cancelar',
+		okButton: 'Ok'
+};
+
+nls.msg.fi = {
+		yesButton: 'Jos',
+		noButton: 'Ei',
+		cancelButton: 'Peruuttaa',
 		okButton: 'Ok'
 };
 if (!nls.msg[nls.language]){
@@ -85,6 +92,11 @@ nls.picker.nl = {
 nls.picker.es = {
 		doneButton : 'OK',
 		cancelButton: 'Cancelar'
+};
+
+nls.picker.fi = {
+		doneButton : 'OK',
+		cancelButton: 'Peruuttaa'
 };
 if (!nls.picker[nls.language]){
 	nls.language = 'en';
@@ -150,6 +162,16 @@ nls.day.es = {
  		6: "Vie",
  		7: "Sab"
 };
+
+nls.day.fi = {
+		1: "Su",
+  		2: "Ma",
+  		3: "Ti",
+  		4: "Ke",
+ 		5: "To",
+ 		6: "Pe",
+ 		7: "La"
+};
 if (!nls.day[nls.language]){
 	nls.language = 'en';
 }
@@ -173,7 +195,7 @@ nls.month.en = {
 nls.month.de = {
 		1: "Januar",
         2: "Februar",
-        3: "M‰rz",
+        3: "M√§rz",
         4: "April",
         5: "Mai",
         6: "Juni",
@@ -202,17 +224,17 @@ nls.month.it = {
 
 nls.month.fr = {
 		1: "janvier",
-        2: "fÈvrier",
+        2: "f√©vrier",
         3: "mars",
         4: "avril",
         5: "mai",
         6: "juin",
         7: "juillet",
-        8: "ao˚t",
+        8: "ao√ªt",
         9: "septembre",
         10: "octobre",
         11: "novembre",
-        12: "dÈcembre"	
+        12: "d√©cembre"	
 };
 
 nls.month.nl = {
@@ -243,6 +265,21 @@ nls.month.es = {
    		10: "Octubre",
    		11: "Noviembre",
    		12: "Diciembre"	
+};
+
+nls.month.fi = {
+		1: "Tammikuu",
+   		2: "Helmikuu",
+   		3: "Maaliskuu",
+   		4: "Huhtikuu",
+   		5: "Toukokuu",
+   		6: "Kes√§kuu",
+   		7: "Hein√§kuu",
+   		8: "Elokuu",
+   		9: "Syyskuu",
+   		10: "Lokakuu",
+   		11: "Marraskuu",
+   		12: "Joulukuu"	
 };
 if (!nls.month[nls.language]){
 	nls.language = 'en';

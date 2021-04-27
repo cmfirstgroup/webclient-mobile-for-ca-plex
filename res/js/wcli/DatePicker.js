@@ -1,7 +1,7 @@
 Ext.ns('wcli');
 Ext.ns('wcli.field');
 
-Date.monthNames = [nls.month[1], nls.month[2], nls.month[3], nls.month[4], nls.month[5], nls.month[6], nls.month[7], nls.month[8], nls.month[9], nls.month[10], nls.month[11], nls.month[12]];
+Ext.Date.monthNames = [nls.month[1], nls.month[2], nls.month[3], nls.month[4], nls.month[5], nls.month[6], nls.month[7], nls.month[8], nls.month[9], nls.month[10], nls.month[11], nls.month[12]];
 Ext.ux.DatePicker.prototype.months = [nls.month[1], nls.month[2], nls.month[3], nls.month[4], nls.month[5], nls.month[6], nls.month[7], nls.month[8], nls.month[9], nls.month[10], nls.month[11], nls.month[12]];
 Ext.ux.DatePicker.prototype.days = [nls.day[1], nls.day[2], nls.day[3], nls.day[4], nls.day[5], nls.day[6], nls.day[7]];
 Ext.define('wcli.DatePicker',{
@@ -21,7 +21,10 @@ Ext.define('wcli.field.DatePicker',{
 	getPicker: function() {
 		var picker = this._picker
 		picker = new wcli.DatePicker(Ext.apply(picker || {}));
-		picker.setValue(this._value || null);
+		if (this._value == null) {
+			this._value = new Date();
+		}
+		picker.setValue(this._value);
 		
 		picker.on({
 			scope: this,
