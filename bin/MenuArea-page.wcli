@@ -1,0 +1,43 @@
+/(!ToolbarArea)
+		new wcli.Button({
+	        cls: 'mainMenuButton fa fa-bars',
+	        controlName: wcli.util.parseControlName("MainMenuBtn:ToolbarArea"),
+	        handler: function () {
+	        	menuArea = Ext.getCmp("dockMenuArea/(!Panel:!NameID)");
+   	        	var hidden = menuArea.isHidden();
+   	        	if (hidden == true){
+	        		menuArea.show();
+	        		i = 0;
+	        		while (i < menuArea.items.items.length){
+						menuArea.items.items[i].show();
+						i++
+					}
+	        	} else {
+	        		menuArea.hide();
+	        		i = 0;
+	        		while (i < menuArea.items.items.length){
+						menuArea.items.items[i].hide();
+						i++
+					}
+	        	}
+	        }
+		}),
+/(!ToolbarArea)
+
+/(!HeaderArea)
+	{
+		xtype: "container",
+		dock: "top",
+		cls: "dockMenuArea",
+		items: [
+			{
+				xtype: "container",
+				id: "dockMenuArea/(!Panel:!NameID)",
+				hidden: 'true',
+				items: [
+					/(!AttachPoint:name=DockMenuArea)
+				]
+			}
+		]		
+	},
+/(!HeaderArea)

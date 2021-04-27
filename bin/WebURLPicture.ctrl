@@ -1,0 +1,32 @@
+/(!EnableAction:SetValue,SetState,SetFocus)
+
+/(!ValuesArea)
+	/(!Action:SetValue)"/(!NameID)": /(!This),/(!Action)
+/(!ValuesArea)
+
+/(!StatesArea)
+	/(!Action:SetState)"/(!NameID)": "",/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+new wcli.ImageComponent({
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	mode: "",
+	/(!If:/(!Param:BitmapFile))
+	src: /(!WsRes)+ "/images/" + "/(!Param:BitmapFile)",
+	/(!Else)
+	src: /(!WsRes)+ "/images/" + /(!This),
+	/(!If)
+	imageCls: "/(!Param:imageCls)" || "x-image-component",
+	imageAlign: "/(!Param:imageAlign)" || "left",
+	listeners: {
+		tap: function() {
+			/(!If:/(!Event:phys=Pressed))
+				panel.submit(wcli.util.evt("Pressed", "/(!NameID)"));
+			/(!If)
+		}
+	}
+}),

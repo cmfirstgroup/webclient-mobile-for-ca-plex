@@ -1,0 +1,11 @@
+/(!Panel:!EnableAction:Refresh)
+
+/(!If:/(!Req:_type)=json)
+	/(ContentType:application/json)
+	/(!WebShell-root.json)
+/(!Else)
+	/(ContentType:text/html)
+	/(OutTo:html:comments=none)
+		/(!WebShell-root.html)
+	/(OutTo)
+/(!If)

@@ -103133,7 +103133,7 @@ Ext.define('Ext.form.Panel', {
          */
         scrollable: {
             translatable: {
-                translationMethod: 'scrollposition'
+                translationMethod: 'csstransform'
             }
         },
 

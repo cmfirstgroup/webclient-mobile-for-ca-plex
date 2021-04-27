@@ -1,0 +1,33 @@
+/(!EnableAction:SetState,SetFocus)
+
+/(!StatesArea)
+	/(!Action:SetState)"/(!NameID)/(!Panel:!NameID)": {
+		"disabled": /(!If:/(!Property:Disabled)=Yes)true/(!Else)false/(!If),
+		"hidden": /(!If:/(!Property:Visible)=Yes)false/(!Else)true/(!If)
+	},/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)/(!Panel:!NameID)",/(!Action)
+/(!FocusArea)
+
+new wcli.Button({
+	id: "/(!NameID)/(!Panel:!NameID)",
+	name: "/(!NameID)",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	cls: '/(!Param:cls)',
+	disabled: /(!If:/(!Property:Disabled)=Yes)true/(!Else)false/(!If),
+	hidden: /(!If:/(!Property:Visible)=Yes)false/(!Else)true/(!If),
+	iconCls: "/(!Param:iconCls)",
+	ui: "/(!Param:ui)" || "plain",
+	handler: function(b, e) {
+		/(!If:/(!Event:phys=Pressed))
+			/(!If:/(!Param:transition))panel.config.transition="/(!Param:transition)";/(!If)
+			/(!If:/(!Param:direction))panel.config.transdir="/(!Param:direction)";/(!If)
+			panel.submit(wcli.util.evt("Pressed", "/(!NameID)"));
+		/(!If)
+	},
+	/(!If:/(!Property:Text)=)/(!Else)
+		text: "/(!Property:Text)"
+	/(!If)
+}),

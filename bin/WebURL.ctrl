@@ -1,0 +1,28 @@
+/(!EnableAction:SetState,SetFocus)
+
+/(!StatesArea)
+	/(!Action:SetState)"/(!NameID)": {
+		"disabled": /(!If:/(!Property:Disabled)=Yes)true/(!Else)false/(!If)
+	},/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+new wcli.Button({
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	cls: '/(!Param:class)',
+	disabled: /(!If:/(!Property:Disabled)=Yes)true/(!Else)false/(!If),
+	hidden: /(!If:/(!Property:Visible)=Yes)false/(!Else)true/(!If),
+	iconCls: "/(!Param:iconCls)",
+	ui: "/(!Param:ui)" || "plain",
+	handler: function(b, e) {
+		/(!If:/(!Param:newWindow)=Yes)
+		window.open(/(!This));
+		/(!Else)
+		window.location = /(!This);
+		/(!If)
+	},
+	text: /(!AttachPoint:name=Label:inlinetemplate)"/(!Text)" || /(!AttachPoint) "/(!Param:label)" || "Link"
+}),

@@ -1,0 +1,18 @@
+/(!EnableAction:SetState)
+
+/(!StatesArea)
+	/(!Action:SetState)"/(!NameID)": {
+		'visible': /(!If:/(!Property:Visible)=No)false/(!Else)true/(!If)
+	},/(!Action)
+/(!StatesArea)
+
+/(!If:/(!Property:StaticType)=Text)
+new wcli.Panel({
+	id: "/(!NameID)",
+	name: "/(!NameID)",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	cls: '/(!Param:cls) /(!NameID)',
+	hidden: /(!If:/(!Property:Visible)=No)true/(!Else)false/(!If),
+	html: '<p class="webStatic"> /(!Text) </p>'
+}),
+/(!If)

@@ -1,0 +1,47 @@
+/(!EnableAction:SetValue,SetState,SetFocus)
+
+/(!ValuesArea)
+	/(!Action:SetValue)"/(!NameID)": /(!This),/(!Action)
+/(!ValuesArea)
+
+/(!StatesArea)
+	/(!Action:SetState)"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If)
+	},/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+new wcli.field.SpinnerEdit({
+	name: "/(!NameID)",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	wclicls: '/(!Param:class)',
+	label: /(!AttachPoint:name=Label:inlinetemplate)"/(!Text)" || /(!AttachPoint) "/(!Param:label)" || undefined,
+	labelWidth: "40%",
+	value: /(!This),
+	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+	listeners: {
+		focus: function() {
+				/(!If:/(!Event:phys=Gained Focus))
+				panel.submit(wcli.util.evt("Gained Focus", "/(!NameID)"));
+				/(!If)
+		},
+		blur: function() {
+				/(!If:/(!Event:phys=Lost Focus))
+				panel.submit(wcli.util.evt("Lost Focus", "/(!NameID)"));
+				/(!If)
+		},
+		keyup: function() {
+				/(!If:/(!Event:phys=Modified))
+				panel.submit(wcli.util.evt("Modified", "/(!NameID)"));
+				/(!If)
+		},
+		change: function() {
+				/(!If:/(!Event:phys=Updated))
+				panel.submit(wcli.util.evt("Updated", "/(!NameID)"));
+				/(!If)
+		}
+	}
+}),

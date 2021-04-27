@@ -1,0 +1,75 @@
+/(!EnableAction:SetValue,SetState,SetFocus)
+
+/(!ValuesArea)
+	/(!Action:SetValue)"/(!NameID)": /(!This),/(!Action)
+/(!ValuesArea)
+
+/(!StatesArea)
+	/(!Action:SetState)"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+		"visible": /(!If:/(!Property:Visible)=No)false/(!Else)true/(!If)
+	},/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+/(!JSOnLoad)
+	if(Ext.getCmp('/(!NameID)')){
+		Ext.getCmp('/(!NameID)')._checked = (/(!This) == '/(!CheckedValue)') ? false : true;
+		Ext.getCmp('/(!NameID)').setChecked(/(!This));
+	}
+/(!JSOnLoad)
+
+new cmfirst.StarRating({
+	id: "/(!NameID)",
+	name: "/(!NameID)",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	cls: '/(!Param:cls)',
+	label: "/(!Property:Text)" || "Field",
+	labelWidth: /(!If:/(!Param:width))"/(!Param:width)" /(!Else)"40%" /(!If),
+	uncheckedValue: "/(!UncheckedValue)",
+	checkedValue: "/(!CheckedValue)",
+	checked: (/(!This) === "/(!CheckedValue)") ? true : false,
+	value: /(!This) || "/(!UncheckedValue)",
+	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+	hidden: /(!If:/(!Property:Visible)=No)true/(!Else)false/(!If),
+	starNumber: '/(!Param:starnbr)',
+	listeners: {
+		focus: function(e) {
+				/(!If:/(!Event:phys=Gained Focus))
+				panel.submit(wcli.util.evt("Gained Focus", "/(!NameID)"));
+				/(!If)
+		},
+		blur: function(e) {
+				/(!If:/(!Event:phys=Lost Focus))
+				panel.submit(wcli.util.evt("Lost Focus", "/(!NameID)"));
+				/(!If)
+		},
+		change: function(e) {
+				currentStar = this;
+				if (currentStar.notFirstChanged){
+					currentStar._checked = true;
+					currentStar.updateChecked(true);
+					currentStar.setValue(currentStar.getCheckedValue());
+					currentStarNumber = currentStar.getStarNumber();
+					starList = Ext.ComponentQuery.query('starRating');
+					for (i = 0; i < starList.length; i++) {
+						if(currentStarNumber < starList[i].getStarNumber()){
+							starList[i]._checked = false;
+							starList[i].updateChecked(false);
+							starList[i].setValue(starList[i].getUncheckedValue());
+						} else if (currentStarNumber > starList[i].getStarNumber()){
+							starList[i]._checked = true;
+							starList[i].updateChecked(true);
+							starList[i].setValue(starList[i].getCheckedValue());
+						}
+					}
+				}
+				else{
+					currentStar.notFirstChanged = true;
+				}
+		}
+	}
+}),

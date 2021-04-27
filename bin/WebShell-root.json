@@ -1,0 +1,62 @@
+/(OutTo:json.panelId)/(PNLID)/(OutTo)
+/(OutTo:json.success)"true"/(OutTo)
+
+/(OutTo:json.values:comments=js)
+	{
+		/(!AttachPoint:name=ValuesArea)
+		/(!-- fix syntax errors)
+		"__fence__": "__post__"
+	}
+/(OutTo)
+
+/(OutTo:json.htmls:comments=js)
+	{
+		/(!AttachPoint:name=HtmlsArea)
+	}
+/(OutTo)
+
+/(OutTo:json.states:comments=js)
+	{
+		/(!AttachPoint:name=StatesArea)
+		/(!-- fix syntax errors)
+		"__fence__": "__post__"
+	}
+/(OutTo)
+
+/(OutTo:json.focus)
+	[
+		/(!AttachPoint:name=FocusArea)
+		/(!-- fix syntax errors)
+		"__fencepost__"
+	]
+/(OutTo)
+
+/(OutTo:json.alerts)
+	[
+		/(!AttachPoint:name=AlertsArea)
+		/(!-- fix syntax errors)
+		"__fencepost__"
+	]
+/(OutTo)
+
+/(OutTo:json.init)
+		(function() {
+			/(!AttachPoint:name=JS)
+		})
+/(OutTo)
+
+/(OutTo:json.postInit)
+		(function() {
+			/(!AttachPoint:name=JSPost)
+		})
+/(OutTo)
+
+/(OutTo:json.refresh)
+	[
+		/(!Panel:!Action:Refresh)
+			/(Embed:html)
+				/(!Render:_type=html:_panelConfig=true)
+			/(Embed)
+		/(!Panel:!Action)
+	][0]
+/(OutTo)

@@ -11,6 +11,20 @@ Ext.define('wcli.Signature',{
 		this.callParent(arguments);
 		this.on("painted", this.onPainted, this);
 		this.isField = true;
+		var me = this;
+		var checkIfPainted = window.setInterval(function(){
+			var control = document.getElementById(me.id)
+			if(control){
+				for (var i = 1; i < control.children.length - 1; i++){
+    				if (control.children[i].tagName.toLowerCase() === 'canvas'){
+    					clearInterval(checkIfPainted);
+    					return;
+    				}
+    			}
+    			Ext.getCmp(me.id).onPainted();
+    			clearInterval(checkIfPainted);
+			}
+		}, 100);
 	},
 	
 	onPainted: function(){

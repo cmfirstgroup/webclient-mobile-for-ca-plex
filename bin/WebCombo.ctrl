@@ -1,0 +1,93 @@
+/(!EnableAction:SetValue,SetState,SetFocus,Combo.Clear,Combo.Remove,Combo.Add)
+
+/(!ValuesArea)
+	/(!Action:SetValue)"/(!NameID)": /(!This:value),/(!Action)
+/(!ValuesArea)
+
+/(!StatesArea)
+	/(!Action:SetState)
+	"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+		'visible': /(!If:/(!Property:Visible)=No)false/(!Else)true/(!If),
+		"optionNames": /(!jsonOptions),
+		"optionValues": /(!jsonValues) 
+	},
+	/(!Action)
+	/(!Action:Combo.Clear)
+	"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+		'visible': /(!If:/(!Property:Visible)=No)false/(!Else)true/(!If),
+		"optionNames": /(!jsonOptions),
+		"optionValues": /(!jsonValues) 
+	},
+	/(!Action)
+	/(!Action:Combo.Remove)
+	"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+		'visible': /(!If:/(!Property:Visible)=No)false/(!Else)true/(!If),
+		"optionNames": /(!jsonOptions),
+		"optionValues": /(!jsonValues) 
+	},
+	/(!Action)
+	/(!Action:Combo.Add)
+	"/(!NameID)": {
+		"disabled": /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+		'visible': /(!If:/(!Property:Visible)=No)false/(!Else)true/(!If),
+		"optionNames": /(!jsonOptions),
+		"optionValues": /(!jsonValues) 
+	},
+	/(!Action)
+/(!StatesArea)
+
+/(!FocusArea)
+	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+/(!FocusArea)
+
+new wcli.field.Select({
+	name: "/(!NameID)",
+	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	cls: '/(!Param:class)',
+	label: /(!AttachPoint:name=Label:inlinetemplate)"/(!Text)" || /(!AttachPoint) "/(!Param:label)",
+	labelWidth: "40%",
+	options: (function() {
+		var value = /(!jsonValues);
+		var name = /(!jsonOptions);
+		var items = [];
+		for (var i=0; i<value.length; i++)
+		{
+			items.push({text: name[i], value: value[i]});
+		}
+		items.push({text: "", value: ""});
+		return items;
+	})(),
+	value: /(!This:mobilevalue),
+	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
+	hidden: /(!If:/(!Property:Visible)=Yes)false/(!Else)true/(!If),
+	listeners: {
+		focus: function(e){/*
+			var combo = this;
+			//wcli.hideKeyboard();
+			Ext.defer(function() {
+				combo.showComponent();
+			},500);
+			*/
+			/(!If:/(!Event:phys=Gained Focus))
+			panel.submit(wcli.util.evt("Gained Focus", "/(!NameID)"));
+			/(!If)
+		},
+		change: function(e) {
+			/(!If:/(!Event:phys=Updated))
+			panel.submit(wcli.util.evt("Updated", "/(!NameID)"));
+			/(!If)
+			/(!If:/(!Event:phys=Modified))
+			panel.submit(wcli.util.evt("Modified", "/(!NameID)"));
+			/(!If)
+			//this.fieldEl.dom.focus();
+		},
+		blur: function(e){
+			/(!If:/(!Event:phys=Lost Focus))
+				panel.submit(wcli.util.evt("Lost Focus", "/(!NameID)"));
+			/(!If)
+		}
+	}
+}),
