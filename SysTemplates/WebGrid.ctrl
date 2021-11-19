@@ -35,13 +35,13 @@
 	/(!WebGrid-model.inc)
 /(!JS)
 
-/(!MainArea)
+/(!HiddenArea)
 {
 	xtype: "textfield",
 	hidden: true,
 	name: "/(!NameID)"
 },
-/(!MainArea)
+/(!HiddenArea)
 
 {
 	__dummy__: (function() {
