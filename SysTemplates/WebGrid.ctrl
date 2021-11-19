@@ -57,6 +57,7 @@
 	
 	xtype: "list",
 	baseCls: "/(!Param:gridClass)",
+	id: "/(!NameID)",
 	name: "/(!NameID)",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	flex: 1,
