@@ -137,7 +137,7 @@ wcli.util = (function() {
 								}, 200);
 							}
 							wcli.stopLoading();
-							
+							panel.getScrollable().getScroller().refresh();
 						},null, { single: true });
 						if (typeof panel.config.transition != "undefined") {
 							controller.animateActiveItem(newPanel, {
