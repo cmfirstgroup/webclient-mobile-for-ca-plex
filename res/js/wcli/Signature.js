@@ -15,7 +15,7 @@ Ext.define('wcli.Signature',{
 		var checkIfPainted = window.setInterval(function(){
 			var control = document.getElementById(me.id)
 			if(control){
-				for (var i = 1; i < control.children.length - 1; i++){
+				for (var i = 1; i <= control.children.length - 1; i++){
     				if (control.children[i].tagName.toLowerCase() === 'canvas'){
     					clearInterval(checkIfPainted);
     					return;
