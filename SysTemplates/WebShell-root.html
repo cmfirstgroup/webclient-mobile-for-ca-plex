@@ -97,6 +97,11 @@
 						jsOnLoad: function() {
 					      /(Embed:js:cdata)
 								/(!AttachPoint:name=JSOnLoad)
+								/(!If:/(!IsDefined:AllowSetFocus))
+									/(!FOCUS)
+										Ext.getCmp("/(!NameID)").focus()
+									/(!FOCUS)
+								/(!If)
 						  /(Embed)  
 						},
 						cssArea: [ /(!AttachPoint:name=CSSArea:sep=,) ]

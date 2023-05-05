@@ -155,6 +155,7 @@ wcli.util = (function() {
 						wcli.util.parseStates(result.states);
 						panel.setValues(result.values);
 						wcli.util.setHtmls(result.htmls);
+						wcli.util.setFocus(result.focus);
 						wcli.stopLoading();
 					}
 				}
@@ -563,6 +564,21 @@ wcli.util = (function() {
 	                value = values[name];
 	                if(Ext.getCmp(name)){
 	                	Ext.getCmp(name).setHtml(value);
+	                }
+	            }
+	        }
+	
+	        return this;
+		},
+		setFocus: function(values) {
+	        var fields = panel.getFields(),
+	        	values = values || {}, field;
+	
+	        for (name in values) {
+	            if (values.hasOwnProperty(name)) {
+	                field = values[name];
+	                if(Ext.getCmp(field)){
+	                	Ext.getCmp(field).focus();
 	                }
 	            }
 	        }

@@ -12,7 +12,9 @@
 /(!StatesArea)
 
 /(!FocusArea)
-	/(!Action:SetFocus)"/(!NameID)",/(!Action)
+	/(!If:/(!IsDefined:AllowSetFocus))
+		/(!Action:SetFocus)"/(!NameID)",/(!Action)
+	/(!If)
 /(!FocusArea)
 
 /(!If:/(!DataType)=Char)
