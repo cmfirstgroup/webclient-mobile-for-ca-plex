@@ -45,6 +45,12 @@
 		})
 /(OutTo)
 
+/(OutTo:json.customJS)
+		(function() {
+			/(!AttachPoint:name=CustomJS)
+		})
+/(OutTo)
+
 /(OutTo:json.postInit)
 		(function() {
 			/(!AttachPoint:name=JSPost)

@@ -112,6 +112,14 @@ wcli.util = (function() {
 							}
 						}
 					}
+					if (result.customJS){
+						try{
+							result.customJS();
+						}
+						catch(e){
+							console.error("Error while processing custom JS:" + e);
+						}						
+					}
 					if (result.refresh && result.panelId != panel.panelId) {
 						eval(result.init).call(window);
 						var panelConfig = eval(result.refresh);
