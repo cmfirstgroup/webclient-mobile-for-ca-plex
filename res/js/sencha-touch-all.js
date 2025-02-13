@@ -97922,6 +97922,12 @@ Ext.define('Ext.picker.Picker', {
             }
 
             if (slot) {
+            	for(i=0; i < slots.length; i++){
+                	if(slots[i].config.name == "meridiem" && key == "hour" && value > 12){
+                        value = value - 12;
+                        break;
+                    }
+                }
                 if (animated) {
                     slot.setValueAnimated(value);
                 } else {

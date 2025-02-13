@@ -1,7 +1,11 @@
 /(!EnableAction:SetValue,SetState,SetFocus)
 
 /(!ValuesArea)
+	/(!If:/(!IsDefined:Mobile24HourFormat))
+	/(!Action:SetValue)"/(!NameID)": wcli.util.getDate(/(!This)),/(!Action)
+	/(!Else)
 	/(!Action:SetValue)"/(!NameID)": /(!This),/(!Action)
+	/(!If)
 /(!ValuesArea)
 
 /(!StatesArea)
@@ -15,14 +19,40 @@
 	/(!Action:SetFocus)"/(!NameID)",/(!Action)
 /(!FocusArea)
 
+/(!If:/(!IsDefined:Mobile24HourFormat))
+new wcli.field.TimePicker24({
+/(!Else)
 new wcli.field.TimePicker({
+/(!If)
+	/(!If:/(!IsDefined:Mobile24HourFormat))
+	Mobile24HourFormat: true,
+	/(!If)	
 	name: "/(!NameID)",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
+	/(!If:/(!IsDefined:Mobile24HourFormat))
+	cls: '/(!Param:class)',
+	/(!If)
 	label: /(!AttachPoint:name=Label:inlinetemplate)"/(!Text)" || /(!AttachPoint) "/(!Param:label)" || undefined,
+	/(!If:/(!IsDefined:Mobile24HourFormat))
+	labelWidth: '/(!Param:labelWidth)' || "30%",
+	/(!Else)
 	labelWidth: /(!If:/(!Param:width))"/(!Param:width)" /(!Else)"40%" /(!If),
+	/(!If)
+	/(!If:/(!IsDefined:Mobile24HourFormat))
+	value: wcli.extras.getTime24(/(!This)),
+	/(!Else)
 	value: /(!This),
+	/(!If)
+	/(!If:/(!IsDefined:Mobile24HourFormat))
+	dateFormat: "G:i",
+	/(!If)
 	disabled: /(!If:/(!Mode)=Edit)false/(!Else)true/(!If),
 	hidden: /(!If:/(!Property:Visible)=No)true/(!Else)false/(!If),
+	/(!If:/(!IsDefined:Mobile24HourFormat))
+	picker: {
+		slotOrder: ['hour','minute']
+	},
+	/(!If)
 	listeners: {
 		focus: function(e) {
 				/(!If:/(!Event:phys=Gained Focus))

@@ -16,7 +16,17 @@ Ext.define('wcli.List',{
 				if(wcControl.container){
 					if(wcControl.container.getScrollable()){
 						wcControl.refreshScroller();
-		    			
+		    			if(me.config.mobileLoadGrid){
+		    				wcControl.container.getScrollable().getScroller().on('scroll', (e,x,y)=>{
+								if(me.container.items.length >= 64){																					
+									var currentPosition = me.container.getScrollable().getScroller().lastDragPosition.y
+									if (currentPosition >= me.getScrollable().getScroller().getMaxPosition().y && !me.config.blockLoadPage) {	
+										me.config.blockLoadPage = true;														
+										panel.submit(wcli.util.evt("Load Grid", me.config.name));
+							        }
+						        }								
+							}, this);		    	
+						}
 	    			}
     				clearInterval(checkIfPainted);
     			}

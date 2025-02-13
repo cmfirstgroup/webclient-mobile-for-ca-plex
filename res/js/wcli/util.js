@@ -213,6 +213,16 @@ wcli.util = (function() {
 				if (typeof currentVar.setModes == 'function'){
 					Ext.ComponentQuery.query('list[name=' + control.getName() + ']')[0].setModes(storeColModes);
 				}
+				//Support for multiple load pages, this forces the app to sent only one LoadPage event at once
+				try{
+					if(control.config.mobileLoadGrid){
+						Ext.getCmp(control.config.name+"_List").config.blockLoadPage = false;
+						let x = Ext.getCmp(control.config.name+"_List").getScrollable().getScroller();
+						x.scrollTo(0,x.flickStartPosition.y,false);
+					}
+				}catch(e){
+					//Handle execptions	
+				}							
 			}
 			
 			if (typeof state.disabled !== 'undefined') {
@@ -667,5 +677,39 @@ wcli.util = (function() {
 			   window.event.stopPropagation();
 		   }
 	   };
+	return new util();
+})();
+
+wcli.extras = (function() {
+
+	
+	function util() {
+	}
+	
+	Ext.apply(util.prototype, {
+
+			
+		getTime24: function(timeStr) {
+			
+			if (!timeStr) {
+				return null;
+			}
+	        var date = new Date();
+	        // if we have no value whatsoever, set a default
+	        if ( !Ext.isDate( timeStr ) && !Ext.isObject( timeStr ) ) {
+	            var defaultTime = timeStr.split( ':' );
+	            return new Date( date.getYear(), date.getMonth(), date.getDate(), defaultTime[ 0 ], defaultTime[ 1 ] );
+	        }
+	        // if the value is an object, create a new date with time values based on object
+	        if ( Ext.isObject( timeStr ) ) {         
+	            return new Date( date.getYear(), date.getMonth(), date.getDate(), timeStr.hour, timeStr.minute );
+	        }
+	        return timeStr;
+
+		}
+		
+
+	});
+
 	return new util();
 })();

@@ -1,6 +1,9 @@
 /(!EnableAction:Grid.Clear,Grid.Insert,Grid.Remove,Grid.Update, SetState)
 
 /(!StatesArea)
+	/(!If:/(!IsDefined:MobileLoadGrid))
+	"blockLoadPage":false,
+	/(!If)
 	/(!Action:Grid.Clear)
 	"/(!NameID)": {
 		"gridCols": /(!This:!jsonCols),
@@ -24,7 +27,7 @@
 		"gridCols": /(!This:!jsonCols),
 		"gridRows": /(!This:!jsonRows)
 	},
-	/(!Action)
+	/(!Action)	
 /(!StatesArea)
 
 (function() {
@@ -47,6 +50,9 @@
 {
 	xtype: "textfield",
 	hidden: true,
+	/(!If:/(!IsDefined:MobileLoadGrid))	
+	mobileLoadGrid:true,	
+	/(!If)	
 	name: "/(!NameID)"
 },
 /(!MainArea)
@@ -64,7 +70,7 @@ new Ext.Panel({
 /(!If)
 
 new wcli.List({
-	baseCls: "/(!Param:gridClass)",
+	baseCls: "/(!Param:gridClass)",	
 	name: "/(!NameID)",
 	controlName: wcli.util.parseControlName("/(!Property:ControlName)"),
 	cls: '/(!Param:class)',
@@ -76,6 +82,11 @@ new wcli.List({
 				/(!NameID)_cols, "/(!Param:grouped)" === "true", "/(!Param:gridClass)"),
 	itemCls: "/(!Param:itemClass)",
 	store: window["/(!NameID)_store"],
+	/(!If:/(!IsDefined:MobileLoadGrid))
+	id: "/(!NameID)_List",
+	mobileLoadGrid:true,
+	blockLoadPage:false,
+	/(!If)
 	disabled: "/(!Mode)" === "Read Only",
 	listeners: {
 		itemtap: function(view, index) {		
