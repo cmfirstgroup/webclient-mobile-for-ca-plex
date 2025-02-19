@@ -93,8 +93,10 @@ Ext.ns('wcli');
 				var item = body[i];
 				if(typeof item.getControlName == 'function'){
 					var name;
-					if(item.getControlName().fieldSet && customNLS.title && item.getControlName().fieldSet.indexOf("$") == 0){
-						name = customNLS.title[item.getControlName().fieldSet];
+					if(typeof customNLS !== 'undefined'){
+						if(item.getControlName().fieldSet && customNLS.title && item.getControlName().fieldSet.indexOf("$") == 0){
+							name = customNLS.title[item.getControlName().fieldSet];
+						}
 					}
 					else{
 						name = item.getControlName().fieldSet || '';
